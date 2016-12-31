@@ -1,9 +1,34 @@
 from flask import Flask, request
 from twilio import twiml
-
+import time
 from flask import render_template
 import movie
 app = Flask(__name__)
+
+@app.route('/movioHome/')
+def goHomeMovio():
+    print "He"
+    return render_template("mov/home.html")
+
+
+
+@app.route('/movioHome/', methods=['POST'])
+def my_form_post(name=None, length=None,res = [],timeA = None):
+    print "1"
+    name = request.form['name']
+    print name
+    startTime=time.time()
+    res = movie.getMoviesSearch(name)
+    timeA = time.time() - startTime
+    length = str(len(res))
+    return render_template('mov/results.html',name=name,timeA=timeA,res=res,length=length)
+
+
+
+
+
+
+
 
 #This method will take care of all cases where user texts twilio phone number
 @app.route('/sms/',methods=["POST"])
