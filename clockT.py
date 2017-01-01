@@ -52,7 +52,13 @@ if int(datetime.datetime.today().weekday()) == 0:
 	movie.sendMessage("Movies Coming Out This Week")
 	movie.sendMessage(getWeekMovies())
 arr = getTodayMovies()
-movie.sendMessage("Movies Coming Today")
+d = len(arr)
+if d == 1:
+	sendMessage("1 Movie coming out today")
+else:
+	sendMessage(str(d)+" Movies coming out today")
+for i in arr:
+	sendMessage(getInfo(i))
 for i in arr:
 	moviesendMessage(getInfo(i))
 

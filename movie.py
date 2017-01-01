@@ -11,6 +11,7 @@ import os
 import datetime
 import pyrebase
 import os
+import predict
 config = {
   "apiKey": "AIzaSyBWNvx1_eEJNzvesTfP6OdlwYluv7ar0Qs",
   "authDomain": "movio-96dae.firebaseapp.com",
@@ -45,6 +46,12 @@ def getDataFromFireBase(name):
 		print "Error"
 		return []
 
+def deleteDuplicates(lis):
+	newLis=[]
+	for item in lis:
+		if item not in newLis:
+			newLis.append(item)
+	return newLis
 
 #gets today date for movie matching
 def getDate():
@@ -252,19 +259,26 @@ def sumUP(arr):
 			pass
 	return sumA
 def addCast(newCast):
+	newCast = deleteDuplicates(newCast)
 	oldCast = getDataFromFireBase("Cast")
 	oldCastCopy = getDataFromFireBase("Cast")
 	count = 0
 	for i in newCast:
 		if i not in oldCastCopy:
+			print i +" not in cast list, so added" 
 			count = count + 1
 			oldCast.append(i)
 	db.child("Cast").remove()
 	db.child("Cast").push(str(oldCast))
 	data = getDataFromFireBase("Data")
 	newdata = []
+	addList = []
+	for n in range(count):
+		addList.append(0)
 	for i in data:
-		newdata.append(i.append(0))
+		newdata.append(i+addList)
+	for i in newdata:
+		print str(len(i))
 	db.child("Data").remove()
 	db.child("Data").push(str(newdata))
 def getInfoForMLviaLink(soup):
@@ -332,7 +346,9 @@ def addToML(name,like):
 			data.append(translateToML(arr[i]))
 			movies.append(arr[i])
 			predictions.append(like)
-			print arr[i]+" Leanred"
+			print arr[i]+" Learned"
+		db.child("Data").remove()
+		db.child("Data").push(str(data))
 	print "Done!"
 	db.child("Data").remove()
 	db.child("Data").push(str(data))
@@ -340,18 +356,36 @@ def addToML(name,like):
 	db.child("Movies").push(str(movies))
 	db.child("Predictions").remove()
 	db.child("Predictions").push(str(predictions))
+def updatePredictions():
+	length = 3+len(genres)+len(getDataFromFireBase("Cast"))
+	features = getDataFromFireBase("Data")
+	old = length - len(features[0])
+	newArr = []
+	for n in range(old):
+		newArr.append(0)
+	newFeatures = []
+	for i in features:
+		arr = i+newArr
+		newFeatures.append(arr)
+	db.child("Data").remove()
+	db.child("Data").push(str(newFeatures))
 
 
+startTime=time.time()
 
 addToML("Twilight",0)
+timeA = time.time() - startTime
+print "Total Time: "+str(timeA)
+"""
+info = translateToML("Twilight")
+print "-----------------------"
+print str(len(info))
+features = getDataFromFireBase("Data")
+for i in features:
+	print str(len(i))
 
+print str(3+len(genres)+len(getDataFromFireBase("Cast")))
 
-
-
-
-
-
-
-
+"""
 
 
