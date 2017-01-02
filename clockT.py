@@ -1,28 +1,4 @@
-import urllib2
-import re
-import nltk
-import csv
-import time
-import requests
-import string
-from bs4 import BeautifulSoup
-from urllib2 import urlopen
-import os
-import datetime
-from firebase import firebase
-import random
-import os
-import time
-import sys
-import urllib2
-import re
-import nltk
-import time
-import requests
-import string
-import webbrowser
-import car
-from urlparse import urlparse
+
 from twilio.rest.resources import Connection
 from twilio.rest.resources.connection import PROXY_TYPE_HTTP
 from twilio.rest import TwilioRestClient
@@ -61,9 +37,6 @@ for i in arr:
 	sendMessage(getInfo(i))
 for i in arr:
 	moviesendMessage(getInfo(i))
-
-
-
 
 
 

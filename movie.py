@@ -265,7 +265,7 @@ def addCast(newCast):
 	count = 0
 	for i in newCast:
 		if i not in oldCastCopy:
-			print i +" not in cast list, so added" 
+			#print i +" not in cast list, so added" 
 			count = count + 1
 			oldCast.append(i)
 	db.child("Cast").remove()
@@ -276,9 +276,12 @@ def addCast(newCast):
 	for n in range(count):
 		addList.append(0)
 	for i in data:
+		#print i
+		#print "----"
 		newdata.append(i+addList)
-	for i in newdata:
-		print str(len(i))
+		#print newdata[data.index(i)]
+	#for i in newdata:
+	#	print str(len(i))
 	db.child("Data").remove()
 	db.child("Data").push(str(newdata))
 def getInfoForMLviaLink(soup):
@@ -317,9 +320,9 @@ def getInfoForMLviaLink(soup):
 #print addCast(a)
 def translateToML(name):
 	results = []
-	cast = getDataFromFireBase("Cast")
 	genres = ['Fantasy-Romance', 'Biography-Crime', 'Comedy', 'Crime', 'Thriller', 'Biography', 'Thriller', 'War', 'Adventure', 'Comedy', 'Family', 'Fantasy', 'Crime', 'Mystery', 'Sport', 'Action', 'Horror', 'Romance', 'Drama', 'Mystery', 'Romance', 'Biography', 'Comedy', 'Crime', 'History', 'Romance', 'Film-Noir', 'Musical', 'War', 'Adventure', 'Comedy', 'Fantasy', 'Romance', 'Adventure', 'Comedy', 'Drama', 'Romance', 'Crime', 'Mystery', 'Romance', 'Thriller', 'Adventure', 'Biography', 'Drama', 'War', 'Comedy', 'Drama', 'Sci-Fi', 'Biography', 'Documentary', 'Drama', 'Comedy', 'History', 'Romance', 'Adventure', 'Comedy', 'Thriller', 'Comedy', 'Crime', 'History', 'Thriller', 'Animation', 'Comedy', 'Family', 'Horror', 'Biography', 'Comedy', 'Documentary', 'Comedy', 'Crime', 'Horror', 'Mystery', 'Action', 'Biography', 'Comedy', 'Documentary', 'Action', 'Adventure', 'Comedy', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sitcom', 'Sport', 'Thriller', 'War', 'Western', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Family', 'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War', 'Western', 'Anime']
 	movieInfo = getInfoForML(name)
+	cast = getDataFromFireBase("Cast")
 	results.append(movieInfo[0])
 	results.append(movieInfo[1])
 	for i in genres:
@@ -343,7 +346,9 @@ def addToML(name,like):
 			predictions[i] = like
 			print arr[i]+" Updated"
 		else:
-			data.append(translateToML(arr[i]))
+			addToData = translateToML(arr[i])
+			data = getDataFromFireBase("Data")
+			data.append(addToData)
 			movies.append(arr[i])
 			predictions.append(like)
 			print arr[i]+" Learned"
@@ -374,9 +379,9 @@ def updatePredictions():
 startTime=time.time()
 
 addToML("Twilight",0)
-timeA = time.time() - startTime
-print "Total Time: "+str(timeA)
-"""
+#timeA = time.time() - startTime
+#print "Total Time: "+str(timeA)
+
 info = translateToML("Twilight")
 print "-----------------------"
 print str(len(info))
@@ -384,8 +389,26 @@ features = getDataFromFireBase("Data")
 for i in features:
 	print str(len(i))
 
-print str(3+len(genres)+len(getDataFromFireBase("Cast")))
+print "Actual Len: "+str(3+len(genres)+len(getDataFromFireBase("Cast")))
+
 
 """
+old = getDataFromFireBase("Data")
+for i in old:
+	print i
 
+print "--------------------"
+ca = ['Abir','Aadi','Chini']
+addCast(ca)
+newD = getDataFromFireBase("Data")
+for i in newD:
+	print i
+print "------------"
+ca = ['Abir','Aadi','Chini',"Varsha","Ajay"]
+addCast(ca)
+newD = getDataFromFireBase("Data")
+for i in newD:
+	print i
+
+"""
 
