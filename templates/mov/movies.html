@@ -61,31 +61,18 @@
 
   <body style="overflow-x: hidden;">
  <div class="container">
-    <p>      <form action="." method="POST">
+    <p>      <form action="/movioHome/" method="POST">
         <input type="text" name="name" placeholder="Enter Movie"  value="{{name}}"style="width:50%">
      
         <input type="submit" name="my-form" value="Search Movie" style="right:60%">
 
     </form></p><hr>
-    <p> <span style="float:left">{{length}} Results "{{name}}"</span><span style="float:right">Total Time: {{timeA}} seconds
-</p><br/><hr>
-{% for url in res %}
-{{url}} 
-  <div class="form-group">
-<p><form action="/movioHome/addMovie/" method="POST" class="form-inline">
+  
+<center><h2>Your Movies</h2></center>
+<hr>
 
-  <input type="hidden" name="like" value="1">
-
-  <input type="hidden" name="name" value="{{url}}">
-  <input type="submit" class="btn btn-primary" value="Love">
- </form>
-<form action="/movioHome/addMovie/" method="POST" class="form-inline">
-  <input type="hidden" name="like" value="0">
-
-  <input type="hidden" name="name" value="{{url}}">
-<input type="submit" class="btn btn-danger" value="Hate">
-</form></p></div>
-<br/><br/><br/>
+{% for movie in arr %}
+<p> {{movie}}</p>
 {% endfor %}
 
 

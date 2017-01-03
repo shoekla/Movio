@@ -1,6 +1,7 @@
 from flask import Flask, request
 from twilio import twiml
 import time
+from flask import redirect
 from flask import render_template
 import movie
 app = Flask(__name__)
@@ -24,7 +25,18 @@ def my_form_post(name=None, length=None,res = [],timeA = None):
     return render_template('mov/results.html',name=name,timeA=timeA,res=res,length=length)
 
 
+@app.route('/movioHome/addMovie/', methods=['POST'])
+def addMovieToML(name=None,like=None):
+    name = request.form['name']
+    like = int(request.form['like'])
+    movie.addToML(name,like)
+    return redirect("http://127.0.0.1:5000/movioHome/myMovies/")
 
+@app.route('/movioHome/myMovies/')
+def myMovies(arr=None):
+    arr = []
+    arr = movie.getMyMovies()
+    return render_template("mov/movies.html",arr=arr)
 
 
 
