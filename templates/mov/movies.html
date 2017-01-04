@@ -60,9 +60,11 @@
   </head>
 
   <body style="overflow-x: hidden;">
+
  <div class="container">
+ <h2>Movio</h2>
     <p>      <form action="/movioHome/" method="POST">
-        <input type="text" name="name" placeholder="Enter Movie"  value="{{name}}"style="width:50%">
+        <input type="text" name="name" placeholder="Enter Movie"  value="{{name}}" style="width:50%" autocomplete="off">
      
         <input type="submit" name="my-form" value="Search Movie" style="right:60%">
 
@@ -72,7 +74,24 @@
 <hr>
 
 {% for movie in arr %}
-<p> {{movie}}</p>
+ <div class="form-group">
+<p> {{movie}}
+
+<form action="/movioHome/addMovie/" method="POST" class="form-inline">
+
+  <input type="hidden" name="like" value="1">
+
+  <input type="hidden" name="name" value="{{movie}}">
+  <input type="submit" class="btn btn-primary" value="Love">
+ </form>
+<form action="/movioHome/addMovie/" method="POST" class="form-inline">
+  <input type="hidden" name="like" value="0">
+
+  <input type="hidden" name="name" value="{{movie}}">
+<input type="submit" class="btn btn-danger" value="Hate">
+</form></p>
+
+</div>
 {% endfor %}
 
 
@@ -84,18 +103,18 @@
 
     
 
+      <div style="top:92%;position:fixed;width:100%">
+    <div class="footer">
     
-    <div class-"footer">
-     <p><br/><br/>
    <div id="footer">
       <div class="container"><br/>
-        <p class="muted credit">Developed By: <a href="/about" style="color:green">Abir Shukla</a></p>
-
+        <p class="muted credit" >Developed By: <a href="http://abirshukla.pythonanywhere.com/" style="color:purple">Abir Shukla</a> 
+<a href="/movioHome/myMovies/" style="color:purple; float:right"> My Movies</a>
+        </p>
       </div>
     </div>
 
     </div>
-
     </div> <!-- /container -->
 
     <!-- Le javascript

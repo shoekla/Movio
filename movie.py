@@ -44,7 +44,7 @@ def getDataFromFireBase(name):
 			begin = already.find(", u'")+4
 		#print begin
 		end = -4
-		arr = eval(already[begin:end].replace('"',''))
+		arr = eval(already[begin:end].replace('"','').replace("\"",""))
 		return arr
 	except Exception as e:
 		print str(e)
@@ -241,7 +241,7 @@ def getRelatedMovies(name):
 		for link in soup.findAll('img', height="113"):
 			title = link.get('alt')
 			#print str(title)
-			arr.append(title)
+			arr.append(title.replace("'","\'"))
 
 
 		return arr
@@ -396,11 +396,22 @@ def addToML(name,like):
 	global globalMovies
 	global globalData
 	global globalCast
+	name = name.replace("'","\'")
 	globalMovies = getDataFromFireBase("Movies")
+	print "Got Movies"
 	globalPredictions = getDataFromFireBase("Predictions")
+	print "Predictions..."
 	globalData = getDataFromFireBase("Data")
+	print "Data..."
 	globalCast = getDataFromFireBase("Cast")
+	print "Cast...."
 	#print globalCast
+	if name in globalMovies:
+		globalPredictions[globalMovies.index(name)] = like
+		db.child("Predictions").remove()
+		db.child("Predictions").push(str(globalPredictions))
+		print name+" single updated"
+		return
 	arr = [name] + getRelatedMovies(name)
 	for i in range(0,len(arr)):
 		if arr[i] in globalMovies:
@@ -437,10 +448,12 @@ def getMyMovies():
 #startTime=time.time()
 
 #db.child("Cast").push("[]")
-#addToML("Inception",1)
+
 #addToML("Iron Man",1)
 #addToML("Star Wars",1)
-
+#addToML("Inception",1)
+#cast =  getDataFromFireBase("Movies")
+#print cast
 #addToML("The Notebook",0)
 #addToML("High School Musical",0)
 #addToML("Fifty Shades of grey",0)
@@ -460,10 +473,12 @@ def getMyMovies():
 
 #print str(len(info))
 #print "-----------------------"
+info = translateToMLSingle("Devil Wears Prada")
 features = getDataFromFireBase("Data")
 labels = getDataFromFireBase("Predictions")
 startTime=time.time()
 print predict.predictMovie(info,features,labels)
+"""
 timeA = time.time() - startTime
 print "Total Time: "+str(timeA)
 startTime=time.time()
@@ -471,7 +486,7 @@ print predict.predictMovieKNN(info,features,labels)
 timeA = time.time() - startTime
 print "Total Time KNN: "+str(timeA)
 
-"""
+
 old = getDataFromFireBase("Data")
 for i in old:
 	print i

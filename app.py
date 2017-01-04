@@ -16,13 +16,20 @@ def goHomeMovio():
 @app.route('/movioHome/', methods=['POST'])
 def my_form_post(name=None, length=None,res = [],timeA = None):
     print "1"
-    name = request.form['name']
-    print name
-    startTime=time.time()
-    res = movie.getMoviesSearch(name)
-    timeA = time.time() - startTime
-    length = str(len(res))
-    return render_template('mov/results.html',name=name,timeA=timeA,res=res,length=length)
+    try:
+        name = request.form['name']
+        print name
+        startTime=time.time()
+        res = movie.getMoviesSearch(name)
+        for i in res:
+            if "\xc3" in i:
+                res.remove(i)
+        print res
+        timeA = time.time() - startTime
+        length = str(len(res))
+        return render_template('mov/results.html',name=name,timeA=timeA,res=res,length=length)
+    except Exception as e:
+        print str(e)
 
 
 @app.route('/movioHome/addMovie/', methods=['POST'])
