@@ -52,8 +52,38 @@ def myMovies(arr=None):
     return render_template("mov/movies.html",arr=arr)
 
 
-
-
+@app.route('/movio/addUser/<name>/')
+def addUserInApp(name):
+    try:
+        movie.addUser(name)
+        return "All Good!"
+    except:
+        return "Error"
+@app.route('/movio/message/<user>/<message_body>')
+def getResponseForUser(user,message_body,res = None):
+    try:
+        res = ""
+        if "will i like" in message_body:
+            arr = message_body.split(" ")
+            res = " ".join(arr[3:])
+            return str(movie.predictMovieMLforUser(res,user))
+        elif "i like" in message_body:
+            arr = message_body.split(" ")
+            res = " ".join(arr[2:])
+            movie.addToMLForUser(res,1,user)
+            return str("Learned that you liked "+res)
+        elif "i did not like" in message_body:
+            arr = message_body.split(" ")
+            res = " ".join(arr[4:])
+            movie.addToMLForUser(res,0,user)
+            return str("Learned That You did not liked "+res)
+        elif "info on " in message_body or "information " in message_body:
+            arr = message_body.split(" ")
+            res = " ".join(arr[2:])
+            return str(movie.getImdbLink(res))
+        return str("I did not understand that, text more for sample commands")
+    except:
+        return str("Error Occured Please Try Again Later")
 
 #This method will take care of all cases where user texts twilio phone number
 @app.route('/sms/',methods=["POST"])

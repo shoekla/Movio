@@ -155,6 +155,7 @@ def getImdbLink(name):
 
 	except:
 		print "Error at: "+str(url)
+
 #gets movie rating from imdb
 def getRating(name):
 	try:
@@ -404,7 +405,21 @@ def translateToMLSingle(name):
 		results.append(int(i in movieInfo[4]))
 	return results
 #print translateToML("A New Hope")
+def translateToMLSingleUser(name,user):
+	results = []
+	genres = ['Fantasy-Romance', 'Biography-Crime', 'Comedy', 'Crime', 'Thriller', 'Biography', 'Thriller', 'War', 'Adventure', 'Comedy', 'Family', 'Fantasy', 'Crime', 'Mystery', 'Sport', 'Action', 'Horror', 'Romance', 'Drama', 'Mystery', 'Romance', 'Biography', 'Comedy', 'Crime', 'History', 'Romance', 'Film-Noir', 'Musical', 'War', 'Adventure', 'Comedy', 'Fantasy', 'Romance', 'Adventure', 'Comedy', 'Drama', 'Romance', 'Crime', 'Mystery', 'Romance', 'Thriller', 'Adventure', 'Biography', 'Drama', 'War', 'Comedy', 'Drama', 'Sci-Fi', 'Biography', 'Documentary', 'Drama', 'Comedy', 'History', 'Romance', 'Adventure', 'Comedy', 'Thriller', 'Comedy', 'Crime', 'History', 'Thriller', 'Animation', 'Comedy', 'Family', 'Horror', 'Biography', 'Comedy', 'Documentary', 'Comedy', 'Crime', 'Horror', 'Mystery', 'Action', 'Biography', 'Comedy', 'Documentary', 'Action', 'Adventure', 'Comedy', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sitcom', 'Sport', 'Thriller', 'War', 'Western', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Family', 'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War', 'Western', 'Anime']
+	movieInfo = getInfoForMLSingle(name)
+	cast = getDataFromFireBaseMultiple(user,"Cast")
 
+	results.append(movieInfo[0])
+	results.append(movieInfo[1])
+	for i in genres:
+		results.append(int(i in movieInfo[2]))
+	#print str(count)+", "+str(len(results))
+	results.append(movieInfo[3])
+	for i in cast:
+		results.append(int(i in movieInfo[4]))
+	return results
 
 
 def addToML(name,like):
@@ -452,7 +467,51 @@ def addToML(name,like):
 	#print "---------------g"
 	db.child("Cast").push(str(globalCast).replace("\"",""))
 
-
+def addToMLForUser(name,like,user):
+	global globalPredictions
+	global globalMovies
+	global globalData
+	global globalCast
+	name = name.replace("'","\'")
+	globalMovies = getDataFromFireBaseMultiple(user,"Movies")
+	print "Got Movies"
+	globalPredictions = getDataFromFireBaseMultiple(user,"Predictions")
+	print "Predictions..."
+	globalData = getDataFromFireBaseMultiple(user,"Data")
+	print "Data..."
+	globalCast = getDataFromFireBaseMultiple(user,"Cast")
+	print "Cast...."
+	#print globalCast
+	if name in globalMovies:
+		globalPredictions[globalMovies.index(name)] = like
+		db.child("Predictions").remove()
+		db.child("Predictions").push(str(globalPredictions))
+		print name+" single updated"
+		return
+	arr = [name] + getRelatedMovies(name)
+	for i in range(0,len(arr)):
+		if arr[i] in globalMovies:
+			globalPredictions[i] = like
+			print arr[i]+" Updated"
+		else:
+			addToData = translateToML(arr[i])
+			globalData.append(addToData)
+			globalMovies.append(arr[i])
+			globalPredictions.append(like)
+			print arr[i]+" Learned"
+		#print globalCast
+	print "Done!"
+	db.child(user).child("Data").remove()
+	db.child(user).child("Data").push(str(globalData))
+	db.child(user).child("Movies").remove()
+	db.child(user).child("Movies").push(str(globalMovies))
+	db.child(user).child("Predictions").remove()
+	db.child(user).child("Predictions").push(str(globalPredictions))
+	db.child(user).child("Cast").remove()
+	#print globalCast
+	#print "---------------g"
+	db.child(user).child("Cast").push(str(globalCast).replace("\"",""))
+#addToMLForUser("Star Wars",1,"abir")
 def getMyMovies():
 	res = []
 	movies = getDataFromFireBase("Movies")
@@ -467,11 +526,24 @@ def predictMovieML(name):
 	if predict.predictMovieKNN(info,features,labels)[0] == 1:
 		return "Yes you will like "+name
 	return "No you will not like "+name
+def predictMovieMLforUser(name,user):
+	info = translateToMLSingleUser(name,user)
+	features = getDataFromFireBaseMultiple(user,"Data")
+	labels = getDataFromFireBaseMultiple(user,"Predictions")
+	if predict.predictMovieKNN(info,features,labels)[0] == 1:
+		return "Yes you will like "+name
+	return "No you will not like "+name
+def addUser(name):
+	db.child(name).child("Movies").push("[]")
+	db.child(name).child("Cast").push("[]")
+	db.child(name).child("Predictions").push("[]")
+	db.child(name).child("Data").push("[]")
 #name = "17 again: 0 ".strip()
 #print name.endswith(": 0")
 #startTime=time.time()
 #db.child("Abir").child("Movies").push("Inception, Star Wars")
 
+#addUser("Abir Shukla")
 """
 db.child("Movies").push("[]")
 
