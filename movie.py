@@ -48,7 +48,23 @@ def getDataFromFireBase(name):
 		return arr
 	except Exception as e:
 		print str(e)
-		print "Error"
+		print "Error Single"
+		return []
+def getDataFromFireBase(name1,name2):
+	already = str(db.child(name1).child(name2).get().val())
+	#print already+"\n\n"
+	arr = []
+	try:
+		begin = already.find(', u"')+4 #gets retrieved files
+		if begin == 3:
+			begin = already.find(", u'")+4
+		#print begin
+		end = -4
+		arr = eval(already[begin:end].replace('"','').replace("\"",""))
+		return arr
+	except Exception as e:
+		print str(e)
+		print "Error Multiple"
 		return []
 
 def deleteDuplicates(lis):
@@ -67,7 +83,7 @@ def getDate():
 def turnToSearch(name):
 	name = name.strip()
 	name = name.replace(" ","+")
-	url = "http://www.imdb.com/find?ref_=nv_sr_fn&q="+name+"&s=all"
+	url = "http://rss.imdb.com/find?ref_=nv_sr_fn&q="+name+"&s=all"
 	return url
 #removes html tags from given string
 def removeHtml(s):
@@ -444,20 +460,30 @@ def getMyMovies():
 	for i in movies:
 		res.append(i+": "+str(pres[movies.index(i)]))
 	return res
-
+def predictMovieML(name):
+	info = translateToMLSingle(name)
+	features = getDataFromFireBase("Data")
+	labels = getDataFromFireBase("Predictions")
+	if predict.predictMovieKNN(info,features,labels)[0] == 1:
+		return "Yes you will like "+name
+	return "No you will not like "+name
+#name = "17 again: 0 ".strip()
+#print name.endswith(": 0")
 #startTime=time.time()
+#db.child("Abir").child("Movies").push("Inception, Star Wars")
 
-#db.child("Cast").push("[]")
+"""
+db.child("Movies").push("[]")
 
-#addToML("Iron Man",1)
-#addToML("Star Wars",1)
-#addToML("Inception",1)
+addToML("Iron Man",1)
+addToML("Star Wars",1)
+addToML("Inception",1)
 #cast =  getDataFromFireBase("Movies")
 #print cast
-#addToML("The Notebook",0)
-#addToML("High School Musical",0)
-#addToML("Fifty Shades of grey",0)
-
+addToML("The Notebook",0)
+addToML("High School Musical",0)
+addToML("Fifty Shades of grey",0)
+"""
 #timeA = time.time() - startTime
 #print "Total Time: "+str(timeA)
 #info = translateToML("Star Wars")
@@ -473,11 +499,13 @@ def getMyMovies():
 
 #print str(len(info))
 #print "-----------------------"
+"""
 info = translateToMLSingle("Devil Wears Prada")
 features = getDataFromFireBase("Data")
 labels = getDataFromFireBase("Predictions")
 startTime=time.time()
 print predict.predictMovie(info,features,labels)
+"""
 """
 timeA = time.time() - startTime
 print "Total Time: "+str(timeA)
