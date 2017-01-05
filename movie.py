@@ -50,7 +50,7 @@ def getDataFromFireBase(name):
 		print str(e)
 		print "Error Single"
 		return []
-def getDataFromFireBase(name1,name2):
+def getDataFromFireBaseMultiple(name1,name2):
 	already = str(db.child(name1).child(name2).get().val())
 	#print already+"\n\n"
 	arr = []
