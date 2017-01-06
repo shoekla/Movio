@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1061171002172",
+    "firebase_url": "https://movio-96dae.firebaseio.com",
+    "project_id": "movio-96dae",
+    "storage_bucket": "movio-96dae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061171002172:android:a476f83ad06ce969",
+        "android_client_info": {
+          "package_name": "com.example.abirshukla.movio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061171002172-shrj2e561og0h2j1ud6g2p5i11hjkca7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.abirshukla.movio",
+            "certificate_hash": "F2BEF73406D01DC2AD929FB21E007C88503675F9"
+          }
+        },
+        {
+          "client_id": "1061171002172-o6s7bt2u9bp6gj7d1nrfiuv633buis36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeqb0TkWv66GoIfqpTEswjkNcN8_s6_Co"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061171002172-o6s7bt2u9bp6gj7d1nrfiuv633buis36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

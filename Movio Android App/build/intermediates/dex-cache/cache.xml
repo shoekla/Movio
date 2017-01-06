@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_5e7e845454b45cdec0cd25176019b1c7fddc0128/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_ce53d0740d79de16ec3828884617c5cfb9f766de/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_b006dc925f6cb0a52971a00cc1a365b22891fa8f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.1_e1fb70c4953905870c51bff04015074e43b8f69a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="eccaaa9ffa6bb4bfbd2e870f01aaf69655d353be">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.6.1_1623eabfac4828099c9a624275379431b877c29a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.koushikdutta.async/androidasync/2.1.9/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="60d0e28fe7ab6da6c03b54cd8ede502284d51a81">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.koushikdutta.async-androidasync-2.1.9_768094c2d71cb43e1e8d466cd05f09c26d532b9b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_6db64dd029c995eadaa4e792d57108c3eaac28a5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_47034de36d6f0df9100277395ae23bf760a6e619/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="cf78d8f7c5462c9a03e8bebb5c96d482397754ec">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9ce3d474bad6c2c34276d2515f62b08d63a32bc9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.1_ad080469f4a00c7b2d374618c76c64f849c0a852/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b75ecdd04a37d31b4a0da2729fc5c558962a529b">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.6.1_7f5b9a7a595a6617c8f7c8a74851af9c194efc52/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_ce8655f1d9debcc7b690846996d87d3a6074a654/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="1ef72e72bc0d05602c366582afa9439f58bb31d6">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.6.1_76d36a6b78598b70187fb1fe80f9eddea324aaee/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_728ef1848b88ae94f0e85c25003ea00a4ee59436/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="a1c351dc10b92d638da57f3a6513f87cfbdc9f83">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.6.1_b1e65af9bd47203d344c78bca1f4777c1d00798a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="1e14ebe1cda8491f152083e752ca5bf73cd37bff">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.6.1_db413fa59743dc7e662ce82c4ed2c809abed46d3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.3_380b1680b3543f5199aa384fae287f9247aae4f6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="ac8365c87591065db07f7bac8551504504832cd4">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-9.6.1_ede528cf8171a7916da2207231f6a9f4d27979f9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_563fb3bcfe3db7874fcba1021c62999ae8e9ed6c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_a1bf1704a52d1ebfeafd2a1700a8da7cb0e83932/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_3711d79e4ba05cacbb2cdc5d737b9075634ea227/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_d9169cf1f5c06c939e00986fca4250d8403909a9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0efd1b44f47c134fb245914a1d54a55adbfc2f8d">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.6.1_fc2f4f42e33b37b232e1ef981ccd4493c0972426/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="4a36600281a648769411ef642c331851732bf29e">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.6.1_974888b9fb8a93fe8921410bc14202e92316284b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_1a79817fb114348619dc0d6de713614c8ceba620/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="72bda0c2d4fbf9f050c3db709f7491121508c3c1">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_0a034055b997956f5a325368ffbad6dbb284010b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.koushikdutta.ion/ion/2.1.9/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7e54ea31584406fcc68225a8656f384c333ff2ee">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.koushikdutta.ion-ion-2.1.9_38f267b14d6bd16632be2f49a30485e34a577e13/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/abirshukla/Movio/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_69c8409cc1fb9f7f036cb85665080c7f60492311/classes.dex" />
+    </item>
+
+</items>
