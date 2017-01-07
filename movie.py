@@ -36,35 +36,35 @@ db.child("Cast").push("[]")
 #Gets data from firebase via Key
 def getDataFromFireBase(name):
 	already = str(db.child(name).get().val())
-	#print already+"\n\n"
+	##print already+"\n\n"
 	arr = []
 	try:
 		begin = already.find(', u"')+4 #gets retrieved files
 		if begin == 3:
 			begin = already.find(", u'")+4
-		#print begin
+		##print begin
 		end = -4
 		arr = eval(already[begin:end].replace('"','').replace("\"",""))
 		return arr
 	except Exception as e:
-		print str(e)
-		print "Error Single"
+		#print str(e)
+		#print "Error Single"
 		return []
 def getDataFromFireBaseMultiple(name1,name2):
 	already = str(db.child(name1).child(name2).get().val())
-	#print already+"\n\n"
+	##print already+"\n\n"
 	arr = []
 	try:
 		begin = already.find(', u"')+4 #gets retrieved files
 		if begin == 3:
 			begin = already.find(", u'")+4
-		#print begin
+		##print begin
 		end = -4
 		arr = eval(already[begin:end].replace('"','').replace("\"",""))
 		return arr
 	except Exception as e:
-		print str(e)
-		print "Error Multiple"
+		#print str(e)
+		#print "Error Multiple"
 		return []
 
 def deleteDuplicates(lis):
@@ -131,7 +131,7 @@ def getMoviesSearch(name):
 		return arr
 
 	except:
-		print "Error at: "+str(url)
+		#print "Error at: "+str(url)
 		return []
 
 #gets imdb link of actual movie
@@ -249,7 +249,7 @@ genres = ['Fantasy-Romance', 'Biography-Crime', 'Comedy', 'Crime', 'Thriller', '
 
 def getRelatedMovies(name):
 	url = getImdbLink(name)
-	print url
+	#print url
 	try:
 		arr=[]
 		source_code=requests.get(url)
@@ -257,13 +257,13 @@ def getRelatedMovies(name):
 		soup=BeautifulSoup(plain_text)
 		for link in soup.findAll('img', height="113"):
 			title = link.get('alt')
-			#print str(title)
+			##print str(title)
 			arr.append(title.replace("'","\'"))
 
 
 		return arr
 	except:
-		print "Error at: "+str(url)
+		#print "Error at: "+str(url)
 		return []
 
 def getInfoForML(name):
@@ -293,9 +293,9 @@ def addCast(newCast):
 	count = 0
 	for i in newCast:
 		if i not in oldCastCopy:
-			#print i +" not in cast list, so added" 
+			##print i +" not in cast list, so added" 
 			count = count + 1
-			globalCast.append(i)
+			globalCast.append(i.replace("'","\'"))
 	global globalData
 
 	newdata = []
@@ -303,12 +303,12 @@ def addCast(newCast):
 	for n in range(count):
 		addList.append(0)
 	for i in globalData:
-		#print i
-		#print "----"
+		##print i
+		##print "----"
 		newdata.append(i+addList)
-		#print newdata[data.index(i)]
+		##print newdata[data.index(i)]
 	#for i in newdata:
-	#	print str(len(i))
+	#	#print str(len(i))
 	globalData = newdata
 def getInfoForMLviaLink(soup):
 	info = []
@@ -327,20 +327,20 @@ def getInfoForMLviaLink(soup):
 	gens = []
 	for i in gen:
 		gens.append(i.strip())
-	#print gens
+	##print gens
 	info.append(gens)
 	awards = 0
 	for link in soup.findAll('span', itemprop="awards"):
 		awards = awards + sumUP(removeHtml(str(link)).replace("\n","").split(" "))
-	#print awards
+	##print awards
 	info.append(awards)
-	#print info
+	##print info
 	cast = []
 	for link in soup.findAll('span', itemtype="http://schema.org/Person"):
 		cast.append(removeHtml(str(link)).replace(",",""))
 	addCast(cast)
 	info.append(cast)
-	#print "Fantasy" in gens
+	##print "Fantasy" in gens
 	return info
 def getInfoForMLviaLinkSingle(soup):
 	info = []
@@ -359,21 +359,21 @@ def getInfoForMLviaLinkSingle(soup):
 	gens = []
 	for i in gen:
 		gens.append(i.strip())
-	#print gens
+	##print gens
 	info.append(gens)
 	awards = 0
 	for link in soup.findAll('span', itemprop="awards"):
 		awards = awards + sumUP(removeHtml(str(link)).replace("\n","").split(" "))
-	#print awards
+	##print awards
 	info.append(awards)
-	#print info
+	##print info
 	cast = []
 	for link in soup.findAll('span', itemtype="http://schema.org/Person"):
 		cast.append(removeHtml(str(link)).replace(",",""))
 	info.append(cast)
-	#print "Fantasy" in gens
+	##print "Fantasy" in gens
 	return info
-#print addCast(a)
+##print addCast(a)
 def translateToML(name):
 	results = []
 	genres = ['Fantasy-Romance', 'Biography-Crime', 'Comedy', 'Crime', 'Thriller', 'Biography', 'Thriller', 'War', 'Adventure', 'Comedy', 'Family', 'Fantasy', 'Crime', 'Mystery', 'Sport', 'Action', 'Horror', 'Romance', 'Drama', 'Mystery', 'Romance', 'Biography', 'Comedy', 'Crime', 'History', 'Romance', 'Film-Noir', 'Musical', 'War', 'Adventure', 'Comedy', 'Fantasy', 'Romance', 'Adventure', 'Comedy', 'Drama', 'Romance', 'Crime', 'Mystery', 'Romance', 'Thriller', 'Adventure', 'Biography', 'Drama', 'War', 'Comedy', 'Drama', 'Sci-Fi', 'Biography', 'Documentary', 'Drama', 'Comedy', 'History', 'Romance', 'Adventure', 'Comedy', 'Thriller', 'Comedy', 'Crime', 'History', 'Thriller', 'Animation', 'Comedy', 'Family', 'Horror', 'Biography', 'Comedy', 'Documentary', 'Comedy', 'Crime', 'Horror', 'Mystery', 'Action', 'Biography', 'Comedy', 'Documentary', 'Action', 'Adventure', 'Comedy', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sitcom', 'Sport', 'Thriller', 'War', 'Western', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Family', 'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War', 'Western', 'Anime']
@@ -384,7 +384,7 @@ def translateToML(name):
 	results.append(movieInfo[1])
 	for i in genres:
 		results.append(int(i in movieInfo[2]))
-	#print str(count)+", "+str(len(results))
+	##print str(count)+", "+str(len(results))
 	results.append(movieInfo[3])
 	for i in globalCast:
 		results.append(int(i in movieInfo[4]))
@@ -399,12 +399,12 @@ def translateToMLSingle(name):
 	results.append(movieInfo[1])
 	for i in genres:
 		results.append(int(i in movieInfo[2]))
-	#print str(count)+", "+str(len(results))
+	##print str(count)+", "+str(len(results))
 	results.append(movieInfo[3])
 	for i in cast:
 		results.append(int(i in movieInfo[4]))
 	return results
-#print translateToML("A New Hope")
+##print translateToML("A New Hope")
 def translateToMLSingleUser(name,user):
 	results = []
 	genres = ['Fantasy-Romance', 'Biography-Crime', 'Comedy', 'Crime', 'Thriller', 'Biography', 'Thriller', 'War', 'Adventure', 'Comedy', 'Family', 'Fantasy', 'Crime', 'Mystery', 'Sport', 'Action', 'Horror', 'Romance', 'Drama', 'Mystery', 'Romance', 'Biography', 'Comedy', 'Crime', 'History', 'Romance', 'Film-Noir', 'Musical', 'War', 'Adventure', 'Comedy', 'Fantasy', 'Romance', 'Adventure', 'Comedy', 'Drama', 'Romance', 'Crime', 'Mystery', 'Romance', 'Thriller', 'Adventure', 'Biography', 'Drama', 'War', 'Comedy', 'Drama', 'Sci-Fi', 'Biography', 'Documentary', 'Drama', 'Comedy', 'History', 'Romance', 'Adventure', 'Comedy', 'Thriller', 'Comedy', 'Crime', 'History', 'Thriller', 'Animation', 'Comedy', 'Family', 'Horror', 'Biography', 'Comedy', 'Documentary', 'Comedy', 'Crime', 'Horror', 'Mystery', 'Action', 'Biography', 'Comedy', 'Documentary', 'Action', 'Adventure', 'Comedy', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sitcom', 'Sport', 'Thriller', 'War', 'Western', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Family', 'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War', 'Western', 'Anime']
@@ -415,7 +415,7 @@ def translateToMLSingleUser(name,user):
 	results.append(movieInfo[1])
 	for i in genres:
 		results.append(int(i in movieInfo[2]))
-	#print str(count)+", "+str(len(results))
+	##print str(count)+", "+str(len(results))
 	results.append(movieInfo[3])
 	for i in cast:
 		results.append(int(i in movieInfo[4]))
@@ -429,33 +429,33 @@ def addToML(name,like):
 	global globalCast
 	name = name.replace("'","\'")
 	globalMovies = getDataFromFireBase("Movies")
-	print "Got Movies"
+	#print "Got Movies"
 	globalPredictions = getDataFromFireBase("Predictions")
-	print "Predictions..."
+	#print "Predictions..."
 	globalData = getDataFromFireBase("Data")
-	print "Data..."
+	#print "Data..."
 	globalCast = getDataFromFireBase("Cast")
-	print "Cast...."
-	#print globalCast
+	#print "Cast...."
+	##print globalCast
 	if name in globalMovies:
 		globalPredictions[globalMovies.index(name)] = like
 		db.child("Predictions").remove()
 		db.child("Predictions").push(str(globalPredictions))
-		print name+" single updated"
+		#print name+" single updated"
 		return
 	arr = [name] + getRelatedMovies(name)
 	for i in range(0,len(arr)):
 		if arr[i] in globalMovies:
 			globalPredictions[i] = like
-			print arr[i]+" Updated"
+			#print arr[i]+" Updated"
 		else:
 			addToData = translateToML(arr[i])
 			globalData.append(addToData)
 			globalMovies.append(arr[i])
 			globalPredictions.append(like)
-			print arr[i]+" Learned"
-		#print globalCast
-	print "Done!"
+			#print arr[i]+" Learned"
+		##print globalCast
+	#print "Done!"
 	db.child("Data").remove()
 	db.child("Data").push(str(globalData))
 	db.child("Movies").remove()
@@ -463,8 +463,8 @@ def addToML(name,like):
 	db.child("Predictions").remove()
 	db.child("Predictions").push(str(globalPredictions))
 	db.child("Cast").remove()
-	#print globalCast
-	#print "---------------g"
+	##print globalCast
+	##print "---------------g"
 	db.child("Cast").push(str(globalCast).replace("\"",""))
 
 def addToMLForUser(name,like,user):
@@ -474,33 +474,33 @@ def addToMLForUser(name,like,user):
 	global globalCast
 	name = name.replace("'","\'")
 	globalMovies = getDataFromFireBaseMultiple(user,"Movies")
-	print "Got Movies"
+	#print "Got Movies"
 	globalPredictions = getDataFromFireBaseMultiple(user,"Predictions")
-	print "Predictions..."
+	#print "Predictions..."
 	globalData = getDataFromFireBaseMultiple(user,"Data")
-	print "Data..."
+	#print "Data..."
 	globalCast = getDataFromFireBaseMultiple(user,"Cast")
-	print "Cast...."
-	#print globalCast
+	#print "Cast...."
+	##print globalCast
 	if name in globalMovies:
 		globalPredictions[globalMovies.index(name)] = like
 		db.child("Predictions").remove()
 		db.child("Predictions").push(str(globalPredictions))
-		print name+" single updated"
+		#print name+" single updated"
 		return
-	arr = [name] + getRelatedMovies(name)
+	arr = [getMovie(name)] + getRelatedMovies(name)
 	for i in range(0,len(arr)):
 		if arr[i] in globalMovies:
 			globalPredictions[i] = like
-			print arr[i]+" Updated"
+			#print arr[i]+" Updated"
 		else:
 			addToData = translateToML(arr[i])
 			globalData.append(addToData)
 			globalMovies.append(arr[i])
 			globalPredictions.append(like)
-			print arr[i]+" Learned"
-		#print globalCast
-	print "Done!"
+			#print arr[i]+" Learned"
+		##print globalCast
+	#print "Done!"
 	db.child(user).child("Data").remove()
 	db.child(user).child("Data").push(str(globalData))
 	db.child(user).child("Movies").remove()
@@ -508,8 +508,8 @@ def addToMLForUser(name,like,user):
 	db.child(user).child("Predictions").remove()
 	db.child(user).child("Predictions").push(str(globalPredictions))
 	db.child(user).child("Cast").remove()
-	#print globalCast
-	#print "---------------g"
+	##print globalCast
+	##print "---------------g"
 	db.child(user).child("Cast").push(str(globalCast).replace("\"",""))
 #addToMLForUser("Star Wars",1,"abir")
 def getMyMovies():
@@ -528,8 +528,11 @@ def predictMovieML(name):
 	return "No you will not like "+name
 def predictMovieMLforUser(name,user):
 	info = translateToMLSingleUser(name,user)
+	#print "Got Info"
 	features = getDataFromFireBaseMultiple(user,"Data")
+	#print "Got Data"
 	labels = getDataFromFireBaseMultiple(user,"Predictions")
+	#print "Got Predictions"
 	if predict.predictMovieKNN(info,features,labels)[0] == 1:
 		return "Yes you will like "+name
 	return "No you will not like "+name
@@ -538,11 +541,61 @@ def addUser(name):
 	db.child(name).child("Cast").push("[]")
 	db.child(name).child("Predictions").push("[]")
 	db.child(name).child("Data").push("[]")
+def restoreDataUser(user):
+	arr = getDataFromFireBaseMultiple(user,"Movies")
+	likes = getDataFromFireBaseMultiple(user,"Predictions")
+	db.child(user).child("Data").remove()
+	db.child(user).child("Movies").remove()
+	db.child(user).child("Predictions").remove()
+	db.child(user).child("Cast").remove()
+	addUser(user)
+	global globalPredictions
+	global globalMovies
+	global globalData
+	global globalCast
+	globalMovies = getDataFromFireBaseMultiple(user,"Movies")
+	#print "Got Movies"
+	globalPredictions = getDataFromFireBaseMultiple(user,"Predictions")
+	#print "Predictions..."
+	globalData = getDataFromFireBaseMultiple(user,"Data")
+	#print "Data..."
+	globalCast = getDataFromFireBaseMultiple(user,"Cast")
+	#print "Cast...."
+	##print globalCast
+	for i in range(0,len(arr)):
+		try:
+			arr[i] = arr[i].replace("'","\'")
+			like = likes[i]
+			if arr[i] in globalMovies:
+				globalPredictions[i] = like
+				#print arr[i]+" Updated"
+			else:
+				addToData = translateToML(arr[i])
+				globalData.append(addToData)
+				globalMovies.append(arr[i])
+				globalPredictions.append(like)
+		except:
+			break
+			#print arr[i]+" Learned"
+		##print globalCast
+	#print "Done!"
+	db.child(user).child("Data").remove()
+	db.child(user).child("Data").push(str(globalData))
+	db.child(user).child("Movies").remove()
+	db.child(user).child("Movies").push(str(globalMovies))
+	db.child(user).child("Predictions").remove()
+	db.child(user).child("Predictions").push(str(globalPredictions))
+	db.child(user).child("Cast").remove()
+	##print globalCast
+	##print "---------------g"
+	db.child(user).child("Cast").push(str(globalCast).replace("\"",""))
+restoreDataUser("abir")
+##print predictMovieMLforUser("Star Trek","abir")
 #name = "17 again: 0 ".strip()
-#print name.endswith(": 0")
+##print name.endswith(": 0")
 #startTime=time.time()
 #db.child("Abir").child("Movies").push("Inception, Star Wars")
-
+#a = ['George Lucas', 'Mark Hamill', 'Harrison Ford', 'Carrie Fisher', 'Irvin Kershner', 'Leigh Brackett (screenplay)', 'Lawrence Kasdan (screenplay)', 'Richard Marquand', 'George Lucas (screenplay)', 'Hayden Christensen', 'Natalie Portman', 'Ewan McGregor', 'Liam Neeson', 'Jonathan Hales (screenplay)', 'J.J. Abrams', 'Lawrence Kasdan', 'Daisy Ridley', 'John Boyega', 'Oscar Isaac', 'Peter Jackson', 'J.R.R. Tolkien (novel)', 'Fran Walsh (screenplay)', 'Elijah Wood', 'Ian McKellen', 'Viggo Mortensen', 'Orlando Bloom', 'Christopher Nolan', 'Bob Kane (characters)', 'David S. Goyer (story)', 'Christian Bale', 'Michael Caine', 'Ken Watanabe', 'Steven Spielberg', 'George Lucas (story by)', 'Karen Allen', 'Paul Freeman', 'Lana Wachowski (as The Wachowski Brothers)', 'Lilly Wachowski (as The Wachowski Brothers)', 'Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss', 'Kenny Ortega', 'Peter Barsocchini', 'Zac Efron', 'Vanessa Hudgens', 'Ashley Tisdale', 'Peter Barsocchini (characters)', 'Matthew Diamond', 'Karin Gist', 'Regina Y. Hicks (as Regina Hicks)', 'Demi Lovato', 'Joe Jonas', 'Meaghan Martin', 'Paul Hoen', 'Dan Berendsen', 'Nick Jonas', 'Allison Liddi-Brown (as Allison Liddi)', 'Annie DeYoung (story)', 'Annie DeYoung', 'Selena Gomez', 'Nicholas Braun', 'Burr Steers', 'Jason Filardi', 'Matthew Perry', 'Leslie Mann', 'Lev L. Spiro', 'Todd J. Greenwald (creator)', 'David Henrie', 'Jake T. Austin', 'Peter Chelsom', 'Michael Poryes (characters)', 'Miley Cyrus', 'Emily Osment', 'Billy Ray Cyrus', 'Michael Grossman', 'Barbara Johns (teleplay)', 'Annie DeYoung (teleplay)', 'Sterling Knight', 'Danielle Campbell', 'Maggie Castle', 'Mark Rosman', 'Leigh Dunlap', 'Hilary Duff', 'Chad Michael Murray', 'Jennifer Coolidge', 'Damon Santostefano', 'Erik Patterson', 'Jessica Scott', 'Drew Seeley', 'Jane Lynch', 'Peter DeLuise (as Peter Deluise)', 'Annie DeYoung (as Annie Deyoung)', 'Debby Ryan', 'Jean-Luc Bilodeau', 'Anna Mae Wills', 'Nicholas Stoller', 'Andrew Jay Cohen', Brendan O'Brien, 'Seth Rogen', 'Rose Byrne', 'Phil Lord', 'Christopher Miller', 'Michael Bacall (screenplay)', 'Oren Uziel (screenplay)', 'Channing Tatum', 'Jonah Hill', 'Ice Cube', 'Michael Bacall (story)', 'Seth MacFarlane', 'Seth MacFarlane (screenplay)', 'Alec Sulkin (screenplay)', 'Mark Wahlberg', 'Mila Kunis', 'Seth Gordon', 'Michael Markowitz (screenplay)', 'John Francis Daley (screenplay)', 'Jason Bateman', 'Charlie Day', 'Jason Sudeikis', 'Evan Goldberg', 'Seth Rogen (screenplay)', 'Evan Goldberg (screenplay)', 'James Franco', 'Todd Phillips', 'Craig Mazin', 'Scot Armstrong', 'Bradley Cooper', 'Zach Galifianakis', 'Ed Helms', 'Jon Lucas', 'Scott Moore', 'Justin Bartha', 'Rawson Marshall Thurber', 'Bob Fisher (screenplay)', 'Steve Faber (screenplay)', 'Jennifer Aniston', 'Emma Roberts', 'Greg Mottola', 'Michael Cera', 'Christopher Mintz-Plasse', 'Dan Sterling (screenplay)', 'Seth Rogen (story)', 'Randall Park']
 #addUser("Abir Shukla")
 """
 db.child("Movies").push("[]")
@@ -551,58 +604,58 @@ addToML("Iron Man",1)
 addToML("Star Wars",1)
 addToML("Inception",1)
 #cast =  getDataFromFireBase("Movies")
-#print cast
+##print cast
 addToML("The Notebook",0)
 addToML("High School Musical",0)
 addToML("Fifty Shades of grey",0)
 """
 #timeA = time.time() - startTime
-#print "Total Time: "+str(timeA)
+##print "Total Time: "+str(timeA)
 #info = translateToML("Star Wars")
-#print "-------------------------"
+##print "-------------------------"
 #features = getDataFromFireBase("Data")
-#print "Info: "+str(len(info))
+##print "Info: "+str(len(info))
 #genres = ['Fantasy-Romance', 'Biography-Crime', 'Comedy', 'Crime', 'Thriller', 'Biography', 'Thriller', 'War', 'Adventure', 'Comedy', 'Family', 'Fantasy', 'Crime', 'Mystery', 'Sport', 'Action', 'Horror', 'Romance', 'Drama', 'Mystery', 'Romance', 'Biography', 'Comedy', 'Crime', 'History', 'Romance', 'Film-Noir', 'Musical', 'War', 'Adventure', 'Comedy', 'Fantasy', 'Romance', 'Adventure', 'Comedy', 'Drama', 'Romance', 'Crime', 'Mystery', 'Romance', 'Thriller', 'Adventure', 'Biography', 'Drama', 'War', 'Comedy', 'Drama', 'Sci-Fi', 'Biography', 'Documentary', 'Drama', 'Comedy', 'History', 'Romance', 'Adventure', 'Comedy', 'Thriller', 'Comedy', 'Crime', 'History', 'Thriller', 'Animation', 'Comedy', 'Family', 'Horror', 'Biography', 'Comedy', 'Documentary', 'Comedy', 'Crime', 'Horror', 'Mystery', 'Action', 'Biography', 'Comedy', 'Documentary', 'Action', 'Adventure', 'Comedy', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sitcom', 'Sport', 'Thriller', 'War', 'Western', 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Family', 'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War', 'Western', 'Anime']
 #movies = getDataFromFireBase("Movies")
-#print movies
+##print movies
 #for i in features:
-#	print movies[features.index(i)]+": "+str(len(i))
-#print "Actual Len: "+str(3+len(genres)+len(getDataFromFireBase("Cast")))
+#	#print movies[features.index(i)]+": "+str(len(i))
+##print "Actual Len: "+str(3+len(genres)+len(getDataFromFireBase("Cast")))
 
-#print str(len(info))
-#print "-----------------------"
+##print str(len(info))
+##print "-----------------------"
 """
 info = translateToMLSingle("Devil Wears Prada")
 features = getDataFromFireBase("Data")
 labels = getDataFromFireBase("Predictions")
 startTime=time.time()
-print predict.predictMovie(info,features,labels)
+#print predict.predictMovie(info,features,labels)
 """
 """
 timeA = time.time() - startTime
-print "Total Time: "+str(timeA)
+#print "Total Time: "+str(timeA)
 startTime=time.time()
-print predict.predictMovieKNN(info,features,labels)
+#print predict.predictMovieKNN(info,features,labels)
 timeA = time.time() - startTime
-print "Total Time KNN: "+str(timeA)
+#print "Total Time KNN: "+str(timeA)
 
 
 old = getDataFromFireBase("Data")
 for i in old:
-	print i
+	#print i
 
-print "--------------------"
+#print "--------------------"
 ca = ['Abir','Aadi','Chini']
 addCast(ca)
 newD = getDataFromFireBase("Data")
 for i in newD:
-	print i
-print "------------"
+	#print i
+#print "------------"
 ca = ['Abir','Aadi','Chini',"Varsha","Ajay"]
 addCast(ca)
 newD = getDataFromFireBase("Data")
 for i in newD:
-	print i
+	#print i
 
 """
 
