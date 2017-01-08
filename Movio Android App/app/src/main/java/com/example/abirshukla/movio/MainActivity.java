@@ -27,15 +27,20 @@ public class MainActivity extends AppCompatActivity {
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         if (sharedPref != null) {
-            String email = sharedPref.getString("user", "");
-            if (!email.equals("") && DataForUser.getUser().equals("")) {
-                Toast.makeText(getApplicationContext(), email+" logged in!",
-                        Toast.LENGTH_SHORT).show();
-                System.out.println(email);
-                DataForUser.setUser(email);
-                Intent h = new Intent(MainActivity.this,Home.class);
-                h.putExtra("say","");
-                startActivity(h);
+            if (DataForUser.logOut == 0) {
+                String email = sharedPref.getString("user", "");
+                if (!email.equals("") && DataForUser.getUser().equals("")) {
+                    Toast.makeText(getApplicationContext(), email + " logged in!",
+                            Toast.LENGTH_SHORT).show();
+                    System.out.println(email);
+                    DataForUser.setUser(email);
+                    Intent h = new Intent(MainActivity.this, Home.class);
+                    h.putExtra("say", "");
+                    startActivity(h);
+                }
+            }
+            else {
+                DataForUser.logOut = 0;
             }
         }
 

@@ -37,6 +37,7 @@ public class Speaker extends Activity implements DialogInterface.OnClickListener
         Bundle wor = getIntent().getExtras();
         String res = wor.getString("res");
         System.out.println("Res: " + res);
+
         if (res.contains("http://")) {
             movioSpeak("Here is an I M D B Page on the Movie");
             res = res.replace("http://rss.","http://www.");
@@ -48,12 +49,7 @@ public class Speaker extends Activity implements DialogInterface.OnClickListener
             return;
         }
         said.setText(res);
-        if (res.contains("DOCTYPE html")) {
-            movioSpeak("Error Occured please try again later");
-            a = new Intent(this, Home.class);
-            a.putExtra("say", "");
-            startActivity(a);
-        }
+
         movioSpeak(res);
         if (res.equals("Here are some Sample Voice Commands")) {
             a = new Intent(this, Sample.class);
@@ -61,6 +57,9 @@ public class Speaker extends Activity implements DialogInterface.OnClickListener
             startActivity(a);
         }
         else {
+            if (res.equals("Error Occured Try Again Later")) {
+                DataForUser.errorCount++;
+            }
             a = new Intent(this, Home.class);
             a.putExtra("say", res);
             startActivity(a);

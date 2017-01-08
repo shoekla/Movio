@@ -8,6 +8,10 @@ public class DataForUser {
     public static String getUser() {
         return user;
     }
+    public static int logOut = 0;
+    public static int firstTime = 1;
+    public static int errorCount = 0;
+
     public static void setUser(String s) {
         user = s;
     }

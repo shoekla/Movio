@@ -16,11 +16,13 @@ import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 public class Home extends AppCompatActivity {
     private final int REQ_CODE_SPEECH_INPUT = 100;
     TextView textView;
     ProgressDialog progress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +34,25 @@ public class Home extends AppCompatActivity {
         progress = new ProgressDialog(this);
         progress.setMessage("Processing Command...");
         progress.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-        System.out.println("Info: userName home: "+DataForUser.getUser());
+        if (DataForUser.errorCount == 3) {
+            progress.setMessage("Fixing Errors...");
+            progress.show();
+            getHTML("http://abirshukla.pythonanywhere.com/movio/restoreUser/"+DataForUser.getUser());
+            progress.hide();
+            progress.dismiss();
+            progress.setMessage("Processing Command...");
 
+        }
+        System.out.println("Info: userName home: "+DataForUser.getUser());
+        if (DataForUser.firstTime == 1) {
+            DataForUser.firstTime = 0;
+        }
+        else {
+            TextView hint = (TextView) findViewById(R.id.textView2);
+            String hintArr[] = {"Say 'help' for Sample Commands", "Example: 'I liked Star Wars'", "Example: 'I did not like Star Wars'", "Example: 'Will I like Star Wars'", "Example: 'Info on 'Star Wars'"};
+            Random random = new Random();
+            hint.setText(hintArr[random.nextInt(5)]);
+        }
     }
     public void getVoice(View view) {
         promptSpeechInput();
@@ -77,6 +96,13 @@ public class Home extends AppCompatActivity {
         //speak.putExtra("res",res);
         //startActivity(speak);
         res = res.toLowerCase();
+        if (res.contains("log out")) {
+            DataForUser.setUser("");
+            DataForUser.logOut = 1;
+            Intent m = new Intent(Home.this,MainActivity.class);
+            startActivity(m);
+            return;
+        }
         if (res.equals("help")) {
             Intent speak = new Intent(Home.this,Speaker.class);
             speak.putExtra("res","Here are some Sample Voice Commands");
@@ -89,6 +115,23 @@ public class Home extends AppCompatActivity {
         getHTML(url);
     }
     public void getHTML(final String url) {
+        if (url.contains("restoreUser")) {
+            System.out.println("Begin HTML");
+            System.out.println("Final Url: " + url);
+            final String[] d = new String[1];
+            Ion.with(getApplicationContext())
+                    .load(url)
+                    .asString()
+                    .setCallback(new FutureCallback<String>() {
+                        @Override
+                        public void onCompleted(Exception e, String result) {
+                            if (result.equals("All Good!")) {
+                                DataForUser.errorCount = 0;
+                            }
+                        }
+                    });
+            return;
+        }
         System.out.println("Begin HTML");
         System.out.println("Final Url: " + url);
         final String[] d = new String[1];
@@ -98,11 +141,20 @@ public class Home extends AppCompatActivity {
                 .setCallback(new FutureCallback<String>() {
                     @Override
                     public void onCompleted(Exception e, String result) {
-                        Intent speak = new Intent(Home.this,Speaker.class);
-                        speak.putExtra("res",result);
-                        progress.hide();
-                        progress.dismiss();
-                        startActivity(speak);
+                        if (result.contains("<!DOCTYPE")) {
+                            Intent speak = new Intent(Home.this,Speaker.class);
+                            speak.putExtra("res","Error Occured Try Again Later");
+                            progress.hide();
+                            progress.dismiss();
+                            startActivity(speak);
+                        }
+                        else {
+                            Intent speak = new Intent(Home.this, Speaker.class);
+                            speak.putExtra("res", result);
+                            progress.hide();
+                            progress.dismiss();
+                            startActivity(speak);
+                        }
                     }
                 });
     }
