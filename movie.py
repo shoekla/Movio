@@ -218,11 +218,34 @@ def getWeekMovies():
 		source_code=requests.get(url)
 		plain_text=source_code.text
 		soup=BeautifulSoup(plain_text)
+		ret = False
 		for link in soup.findAll('h4', itemprop="name"):
 			s = removeHtml(str(link))
-			if "- [" not in s:
-				return res
+			if "[" in s:
+				ret = True
+			else:
+				if ret:
+					return res
 			res = res+"\n"+s
+		return res
+	except:
+		return ""
+def getWeekMoviesList():
+	try:
+		url = "http://rss.imdb.com/movies-in-theaters/?ref_=cs_inth"
+		res = []
+		source_code=requests.get(url)
+		plain_text=source_code.text
+		soup=BeautifulSoup(plain_text)
+		ret = False
+		for link in soup.findAll('h4', itemprop="name"):
+			s = removeHtml(str(link))
+			if "[" in s:
+				ret = True
+			else:
+				if ret:
+					return res
+			res.append(s[:s.find("[")])
 		return res
 	except:
 		return ""
@@ -237,8 +260,6 @@ def getTodayMovies():
 		date = getDate()
 		for link in soup.findAll('h4', itemprop="name"):
 			s = removeHtml(str(link))
-			if "- [" not in s:
-				return arr
 			if date in s:
 				arr.append(s[:s.find("- [")-8])
 		return arr
@@ -589,7 +610,8 @@ def restoreDataUser(user):
 	##print globalCast
 	##print "---------------g"
 	db.child(user).child("Cast").push(str(globalCast).replace("\"",""))
-restoreDataUser("abir")
+print getWeekMoviesList()
+#restoreDataUser("abir")
 ##print predictMovieMLforUser("Star Trek","abir")
 #name = "17 again: 0 ".strip()
 ##print name.endswith(": 0")
