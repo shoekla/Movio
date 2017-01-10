@@ -4,12 +4,19 @@ import time
 from flask import redirect
 from flask import render_template
 import movie
+
 app = Flask(__name__)
+
 #Home of app
 @app.route('/movioHome/')
 def goHomeMovio():
     print "He"
     return render_template("mov/home.html")
+
+@app.route('/')
+def goHome():
+    return render_template("mov/home.html")
+
 #Test For Texting service
 @app.route('/homesms/')
 def hoemfsdfgsdfgsoms():
