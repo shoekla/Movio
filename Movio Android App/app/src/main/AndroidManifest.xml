@@ -3,6 +3,10 @@
     package="com.example.abirshukla.movio">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
+    <!-- Register the Alarm Receiver -->
+    <receiver android:name="com.example.alarmmanagernotifcation.AlarmReceiver" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +24,11 @@
         <activity android:name=".Home" />
         <activity android:name=".Speaker" />
         <activity android:name=".Sample" />
-        <activity android:name=".Web"></activity>
+        <activity android:name=".Web" />
+
+        <receiver android:name=".NotifyService" />
+
+        <activity android:name=".MovieWeek"></activity>
     </application>
 
 </manifest>

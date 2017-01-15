@@ -1,9 +1,15 @@
 package com.example.abirshukla.movio;
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPref;
@@ -24,6 +32,26 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkFire = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        NotificationManager notificationManager = (NotificationManager) MainActivity.this
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Intent notificationIntent = new Intent(MainActivity.this, MovieWeek.class);
+        notificationIntent.putExtra("user","abir");
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0,
+                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(
+                MainActivity.this).setSmallIcon(R.drawable.icon)
+                .setContentTitle("Find Recent Movies You May Like")
+                .setContentText("").setSound(alarmSound)
+                .setContentIntent(pendingIntent)
+                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+        notificationManager.notify(1234, mNotifyBuilder.build());
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         if (sharedPref != null) {
@@ -101,6 +129,14 @@ public class MainActivity extends AppCompatActivity {
                     myRef.child("PassW").setValue(passW);
                     myRef.child("Users").setValue(users);
 
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.HOUR_OF_DAY, 18);
+                    calendar.set(Calendar.MINUTE, 30);
+                    calendar.set(Calendar.SECOND, 0);
+                    Intent intent1 = new Intent(MainActivity.this, NotifyService.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(MainActivity.this.ALARM_SERVICE);
+                    am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
                     Toast.makeText(getApplicationContext(), "Your In!",
                             Toast.LENGTH_SHORT).show();

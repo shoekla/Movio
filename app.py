@@ -91,7 +91,14 @@ def getResponseForUser(user,message_body,res = None):
         return str("I did not understand that, text more for sample commands")
     except:
         return str("Error Occured Please Try Again Later")
-
+@app.route('/soonMovie/<user>/')
+def getUserLikeMoive(user, res = None):
+    try:
+        res = str(movie.getMoviesListForUser(user))
+        res = res[1:-1]
+        return res
+    except:
+        return ""
 #This method will take care of all cases where user texts twilio phone number
 @app.route('/sms/',methods=["POST"])
 def sms():

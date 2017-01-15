@@ -646,8 +646,11 @@ def getMoviesListForUser(user):
 		return res
 	except:
 		return []
+
+
+
 #print predictMovieMLforUser('The Notebook',"abir")
-print getMoviesListForUser("abir")
+#print getMoviesListForUser("abir")
 #print getWeekMoviesList()
 #restoreDataUser("abir")
 ##print predictMovieMLforUser("Star Trek","abir")

@@ -9,7 +9,6 @@ import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Locale;
 
 
