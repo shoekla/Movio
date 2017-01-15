@@ -230,25 +230,7 @@ def getWeekMovies():
 		return res
 	except:
 		return ""
-def getWeekMoviesList():
-	try:
-		url = "http://rss.imdb.com/movies-in-theaters/?ref_=cs_inth"
-		res = []
-		source_code=requests.get(url)
-		plain_text=source_code.text
-		soup=BeautifulSoup(plain_text)
-		ret = False
-		for link in soup.findAll('h4', itemprop="name"):
-			s = removeHtml(str(link))
-			if "[" in s:
-				ret = True
-			else:
-				if ret:
-					return res
-			res.append(s[:s.find("[")])
-		return res
-	except:
-		return ""
+
 #returns a list of all movies coming out on the current day
 def getTodayMovies():
 	try:
@@ -610,7 +592,63 @@ def restoreDataUser(user):
 	##print globalCast
 	##print "---------------g"
 	db.child(user).child("Cast").push(str(globalCast).replace("\"",""))
-print getWeekMoviesList()
+def predictMovieMLforUserNoti(name,user):
+	info = translateToMLSingleUser(name,user)
+	#print "Got Info"
+	features = getDataFromFireBaseMultiple(user,"Data")
+	#print "Got Data"
+	labels = getDataFromFireBaseMultiple(user,"Predictions")
+	#print "Got Predictions"
+	return predict.predictMovieKNN(info,features,labels)[0]
+	
+def getWeekMoviesList():
+	try:
+		url = "http://rss.imdb.com/movies-in-theaters/?ref_=cs_inth"
+		res = []
+		source_code=requests.get(url)
+		plain_text=source_code.text
+		soup=BeautifulSoup(plain_text)
+		ret = False
+		for link in soup.findAll('h4', itemprop="name"):
+			s = removeHtml(str(link))
+			if "[" in s:
+				ret = True
+			else:
+				if ret:
+					return res
+			s = s[:s.find("[")]
+			if s.endswith(" - "):
+				s = s[:-3]
+			res.append(s)
+		return res
+	except:
+		return []
+def getMoviesListForUser(user):
+	try:
+		url = "http://rss.imdb.com/movies-in-theaters/?ref_=cs_inth"
+		res = []
+		source_code=requests.get(url)
+		plain_text=source_code.text
+		soup=BeautifulSoup(plain_text)
+		ret = False
+		for link in soup.findAll('h4', itemprop="name"):
+			s = removeHtml(str(link))
+			if "[" in s:
+				ret = True
+			else:
+				if ret:
+					return res
+			s = s[:s.find("[")]
+			if s.endswith(" - "):
+				s = s[:-3]
+			if predictMovieMLforUserNoti(s,user) == 1:
+				res.append(s)
+		return res
+	except:
+		return []
+#print predictMovieMLforUser('The Notebook',"abir")
+print getMoviesListForUser("abir")
+#print getWeekMoviesList()
 #restoreDataUser("abir")
 ##print predictMovieMLforUser("Star Trek","abir")
 #name = "17 again: 0 ".strip()
