@@ -1,7 +1,10 @@
 package com.example.abirshukla.movio;
 
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,6 +22,10 @@ public class MovieWeek extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(1234);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_week);
         Bundle dataUser = getIntent().getExtras();
@@ -70,7 +77,9 @@ public class MovieWeek extends AppCompatActivity {
     }
 
     public void getMovieInfo(String movieName) {
-        String url = "http://abirshukla.pythonanywhere.com/movio/message/info on "+movieName;
+        String url = "http://abirshukla.pythonanywhere.com/movio/message/"+DataForUser.getUser()+"/info on "+movieName;
+
+        System.out.println("Info: "+url);
         final String[] d = new String[1];
         Ion.with(getApplicationContext())
                 .load(url)
@@ -78,14 +87,14 @@ public class MovieWeek extends AppCompatActivity {
                 .setCallback(new FutureCallback<String>() {
                     @Override
                     public void onCompleted(Exception e, String result) {
+                        System.out.println("Info: "+result);
                         if (result.contains("<!DOCTYPE")) {
                             Toast toast = Toast.makeText(getApplicationContext(), "Error Occured", Toast.LENGTH_SHORT);
                             return;
                         }
                         else {
-                            Intent openWeb = new Intent(MovieWeek.this, Web.class);
-                            openWeb.putExtra("url", result);
-                            startActivity(openWeb);
+                            Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse(result));
+                            startActivity(intent);
                         }
                     }
                 });

@@ -21,7 +21,7 @@ public class NotifyService extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Intent notificationIntent = new Intent(context, MainActivity.class);
+        Intent notificationIntent = new Intent(context, MovieWeek.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
@@ -29,11 +29,11 @@ public class NotifyService extends BroadcastReceiver {
 
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
+        Uri al = Uri.parse("android.resource://com.example.abirshukla.movio/" + R.raw.tone);
         NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(
                 context).setSmallIcon(R.drawable.icon)
-                .setContentTitle("Alarm Fired")
-                .setContentText("Events To be PErformed").setSound(alarmSound)
+                .setContentTitle("Recent Movies")
+                .setContentText("Find Recent Movies You May Like").setSound(al)
                 .setAutoCancel(true).setWhen(when)
                 .setContentIntent(pendingIntent)
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});

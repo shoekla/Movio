@@ -6,10 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -43,15 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(
-                MainActivity.this).setSmallIcon(R.drawable.icon)
-                .setContentTitle("Find Recent Movies You May Like")
-                .setContentText("").setSound(alarmSound)
-                .setContentIntent(pendingIntent)
-                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
-        notificationManager.notify(1234, mNotifyBuilder.build());
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         if (sharedPref != null) {
@@ -105,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
                                 Intent h = new Intent(MainActivity.this, Home.class);
                                 DataForUser.setUser(userName);
                                 checkFire = false;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(Calendar.HOUR_OF_DAY, 11);
+                                calendar.set(Calendar.MINUTE, 30);
+                                calendar.set(Calendar.SECOND, 0);
+                                Intent intent1 = new Intent(MainActivity.this, NotifyService.class);
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                                AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(MainActivity.this.ALARM_SERVICE);
+                                am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+                                Toast.makeText(getApplicationContext(), "Notification Set!",
+                                        Toast.LENGTH_SHORT).show();
                                 h.putExtra("say","");
                                 startActivity(h);
 
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     myRef.child("Users").setValue(users);
 
                     Calendar calendar = Calendar.getInstance();
-                    calendar.set(Calendar.HOUR_OF_DAY, 18);
+                    calendar.set(Calendar.HOUR_OF_DAY, 11);
                     calendar.set(Calendar.MINUTE, 30);
                     calendar.set(Calendar.SECOND, 0);
                     Intent intent1 = new Intent(MainActivity.this, NotifyService.class);
