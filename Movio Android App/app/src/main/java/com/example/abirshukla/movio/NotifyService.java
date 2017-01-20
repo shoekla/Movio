@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 /**
@@ -20,8 +21,10 @@ public class NotifyService extends BroadcastReceiver {
         long when = System.currentTimeMillis();
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
+        Bundle d = intent.getExtras();
 
         Intent notificationIntent = new Intent(context, MovieWeek.class);
+        notificationIntent.putExtra("user",d.getString("user"));
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,

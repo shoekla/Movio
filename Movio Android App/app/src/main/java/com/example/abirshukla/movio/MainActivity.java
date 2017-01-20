@@ -95,10 +95,11 @@ public class MainActivity extends AppCompatActivity {
                                 DataForUser.setUser(userName);
                                 checkFire = false;
                                 Calendar calendar = Calendar.getInstance();
-                                calendar.set(Calendar.HOUR_OF_DAY, 11);
-                                calendar.set(Calendar.MINUTE, 30);
+                                calendar.set(Calendar.HOUR_OF_DAY, 9);
+                                calendar.set(Calendar.MINUTE, 00);
                                 calendar.set(Calendar.SECOND, 0);
                                 Intent intent1 = new Intent(MainActivity.this, NotifyService.class);
+                                intent1.putExtra("user",userName);
                                 PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
                                 AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(MainActivity.this.ALARM_SERVICE);
                                 am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
@@ -129,10 +130,11 @@ public class MainActivity extends AppCompatActivity {
                     myRef.child("Users").setValue(users);
 
                     Calendar calendar = Calendar.getInstance();
-                    calendar.set(Calendar.HOUR_OF_DAY, 11);
-                    calendar.set(Calendar.MINUTE, 30);
+                    calendar.set(Calendar.HOUR_OF_DAY, 9);
+                    calendar.set(Calendar.MINUTE, 00);
                     calendar.set(Calendar.SECOND, 0);
                     Intent intent1 = new Intent(MainActivity.this, NotifyService.class);
+                    intent1.putExtra("user",userName);
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
                     AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(MainActivity.this.ALARM_SERVICE);
                     am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
