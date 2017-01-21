@@ -21,14 +21,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Home" />
-        <activity android:name=".Speaker" />
-        <activity android:name=".Sample" />
-        <activity android:name=".Web" />
+        <activity android:name=".Home"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Speaker"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Sample"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Web"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".NotifyService" />
 
-        <activity android:name=".MovieWeek"></activity>
+        <activity android:name=".MovieWeek"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

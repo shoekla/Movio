@@ -79,7 +79,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="d5fd07e3fe9a983cfaea04bb6cf924829e33b7b2">
+        sha1="8a7e57ce005009dc69bdd7c81689647daf2d9060">
         <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9ce3d474bad6c2c34276d2515f62b08d63a32bc9/classes.dex" />
     </item>
     <item
@@ -232,7 +232,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="c6d9caba578c269e3d0a9090bbe0dc6e6bd486ef">
+        sha1="741a6da433989fe68404f8b5e78c72d2e548ba78">
         <dex dex="/Users/abirshukla/Movio/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_0a034055b997956f5a325368ffbad6dbb284010b/classes.dex" />
     </item>
     <item
