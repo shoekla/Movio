@@ -1,0 +1,313 @@
+  <!DOCTYPE html>
+<!-- saved from url=(0065)http://bootstrapsale.com/projects/roost/v1-1/submit-property.html -->
+<html lang="en"><!--[if IE 9 ]><html lang="en" class="ie9"><![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Movio {{userName}} movies</title>
+
+        <!-- Vendors -->
+
+        <!-- Material design colors -->
+        <link href="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/material-design-iconic-font.min.css')}}" rel="stylesheet">
+
+        <!-- CSS animations -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/animate.min.css')}}">
+
+        <!-- Select2 - Custom Selects -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/select2.min.css')}}">
+
+        <!-- NoUiSlider - Input Slider -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/nouislider.min.css')}}">
+
+        <!-- Site -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/app_1.min.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/app_2.min.css')}}">
+
+        <!-- Page Loader JS -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/page-loader.min.js')}}" async=""></script>
+    <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/google_analytics_auto.js')}}"></script></head>
+
+    <body>
+        <!-- Start page loader -->
+     
+        <!-- End page loader -->
+
+
+
+        <div class="action-header">
+            <div class="container">
+               <!-- data-rmd-action="block-open" data-rmd-target="#advanced-search" -->
+                <form action="/search/" method="POST">
+                
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+        <input class="search__input hidden-xs" type="text" placeholder="Search For A Movie..." name="name">
+ <div class="search__advanced">
+                                
+                              
+                                <div class="col-xs-12 m-t-10">
+                                    <input type="submit" name="Search" value="Search" class="btn btn-primary">
+                                    <button class="btn btn-link" data-rmd-action="advanced-search-close">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+             
+
+             
+            </div>
+        </div>
+
+        <section class="section">
+        <button class="btn btn--action btn--circle" data-rmd-action="block-open" data-rmd-target="#advanced-search">
+            <img src="{{ url_for('static', filename='user.png')}}" style="height:25px;width:25px" />
+            </button>
+             <div class="container">
+               
+
+                <div class="submit-property">
+                  
+
+                    <div class="tab-content submit-property__content">
+                        <div class="tab-pane fade in active" id="submit-property-1">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h2>Rated Movies</h2>
+                                    <p style="color:green">{{message}}</p>
+                                    <hr/>
+                                </div>
+                    
+                                  <form class="card__body" action="/updateRatings/" method="POST">
+
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+
+                            <input type="hidden" name="length" value="{{length}}"/>
+                                  {% for res in results %}
+
+                                    <div class="form-group">
+                                        <label>{{res[0]}} (Current: {{res[1]}})</label>
+                                        {% if res[1] == "Hate" %}
+                        <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                            <label class="btn active">
+                                                <input type="radio" name="{{results.index(res)}}" value="Hate" checked>Hate
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Mind">Don't Mind
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Like">Like
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Love">Love
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                     {% if res[1] == "Mind" %}
+                        <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Hate" >Hate
+                                            </label>
+                                            <label class="btn active">
+                                                <input type="radio" name="{{results.index(res)}}" value="Mind" checked>Don't Mind
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Like">Like
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Love">Love
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                     {% if res[1] == "Like" %}
+                        <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Hate" >Hate
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Mind">Don't Mind
+                                            </label>
+                                            <label class="btn active">
+                                                <input type="radio" name="{{results.index(res)}}" value="Like" checked>Like
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Love">Love
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+
+ {% if res[1] == "Love" %}
+                        <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Hate">Hate
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Mind">Don't Mind
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" name="{{results.index(res)}}" value="Like">Like
+                                            </label>
+                                            <label class="btn active">
+                                                <input type="radio" name="{{results.index(res)}}" value="Love" checked>Love
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+
+
+
+                                    {% endfor %}
+<br/><hr/>
+<input type="submit" name="Update Ratings" value="Update Ratings" class="btn btn-primary">
+
+
+
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+   </section>
+
+  
+      <aside id="advanced-search" class="rmd-sidebar">
+            <div class="card">
+                <div class="card__header">
+                    <h2>{{userName}}</h2>
+                    <hr/>
+
+                    
+                </div>
+
+                <div class="card__body m-t-20">
+                 <div class="form-group form-group--float">
+
+                        <label class="fg-float">User Options</label>
+                        <br/><br/><br/>
+                        <form action="/ratedMovies/" method="POST">
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+
+<input type="submit" name="Movies Rated" value="Movies Rated" class="btn btn-success">
+                        </form>
+                        <br/><br/>
+                        <form action="/accountSett/" method="POST">
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+
+<input type="submit" name="Acount Settings" value="Acount Settings" class="btn btn-primary">
+                        </form>
+                       
+                    </div><br/>
+                  
+                   </div>
+
+
+               
+
+               
+
+                <div class="card__footer">
+<hr/>
+ <a class="btn btn-warning" href="/">Logout</a>
+
+
+                    <a href="" class="btn btn-link" data-rmd-action="block-close" data-rmd-target="#advanced-search">Cancel</a>
+                
+                </div>
+                
+            </div>
+
+        </aside>
+
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1>Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+            <div class="ie-warning__inner">
+                <ul class="ie-warning__download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="img/browsers/chrome.png" alt="">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="img/browsers/firefox.png" alt="">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="img/browsers/opera.png" alt="">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="img/browsers/safari.png" alt="">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="img/browsers/ie.png" alt="">
+                            <div>IE (New)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+        <![endif]-->
+
+
+        <!-- Javascript -->
+
+        <!-- jQuery -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/jquery.min.js')}}"></script>
+
+        <!-- Bootstrap -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/bootstrap.min.js')}}"></script>
+
+        <!-- Waves button ripple effects -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/waves.min.js')}}"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/select2.full.min.js')}}"></script>
+
+        <!-- Slick Carousel - Custom Alerts -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/slick.min.js')}}"></script>
+
+        <!-- NoUiSlider -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/nouislider.min.js')}}"></script>
+
+        <!-- Autosize - Textarea -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/autosize.min.js')}}"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/app.min.js')}}"></script>
+
+        <!-- Demo only -->
+        <script src="{{ url_for('static', filename='./Roost - Material Design Real Estate_files/demo.js')}}"></script>
+    
+</body></html>

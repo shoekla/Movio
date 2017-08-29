@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://bootstrapsale.com/projects/roost/v1-1/index.html -->
+<html lang="en"><!--[if IE 9 ]><html lang="en" class="ie9"><![endif]--> <head>   
+
+   
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Movio Sign Up</title>
+
+<link rel="shortcut icon" href="https://raw.githubusercontent.com/shoekla/Movio/master/Movio%20Android%20App/app/src/main/res/drawable/icon.png" />
+        <!-- Vendors -->
+
+        <!-- Material design colors -->
+
+        <!-- CSS animations -->
+
+   
+        <!-- NoUiSlider - Input Slider -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/nouislider.min.css')}}">
+
+        <!-- Site -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/app_1.min.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/app_2.min.css')}}">
+           <!-- Material design colors -->
+        <link href="{{ url_for('static', filename='vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet')}}">
+
+        <!-- CSS animations -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/bower_components/animate.css/animate.min.css')}}">
+
+        <!-- Select2 - Custom Selects -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/bower_components/select2/dist/css/select2.min.css')}}">
+
+        <!-- NoUiSlider - Input Slider -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/bower_components/nouislider/distribute/nouislider.min.css')}}">
+
+        <!-- Site -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/app_1.min.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/app_2.min.css')}}">
+
+        <!-- Page Loader JS -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+</head>
+
+<body>
+    <!-- Advanced Listing Search -->
+    <section class="section">
+            <div class="container">
+                <header class="section__title">
+                    <center> <h1>
+
+   Movio
+   <img src="https://raw.githubusercontent.com/shoekla/Movio/master/Movio%20Android%20App/app/src/main/res/drawable/icon.png" style="height: 50px;width: 50px"/></h1>
+  <h4 style="color:grey">"Your taste in Movies"</h4>
+
+    Front End by <a href="http://bootstrapsale.com/projects/roost/v1-1/">Roost</a>
+
+   </center>                    <h4 style="color:{{color}}">{{message}}</h4>
+                </header>
+
+                <div class="submit-property">
+                  
+
+                    <div class="tab-content submit-property__content">
+                        <div class="tab-pane fade in active" id="submit-property-1">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h2>Login</h2>
+                                </div>
+                                             <div class="load">
+<img src="{{ url_for('static', filename='load.gif')}}" style="height:50px;width:50px" />
+<br/><br/><p style="color:green">Logging in and making predictions...</p>
+<br/>
+</div>
+
+                                <form class="card__body" action="/home/" method="POST">
+                                    <div class="form-group form-group--float m-b-5">
+                                        <input type="text" class="form-control" name="name">
+                                        <i class="form-group__bar"></i>
+                                        <label>Username</label>
+                                    </div>
+                                        <br/><br/><br/>
+                                         <div class="form-group form-group--float m-b-5">
+                                        <input type="password" class="form-control" name="passw">
+                                        <i class="form-group__bar"></i>
+                                        <label>Password</label>
+                                    </div>
+                                        <br/><br/><br/>
+<button class="btn btn-primary" type="submit" id="show">Login</button>
+<a class="btn btn-link" href="/signUp/">Sign Up</a>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1>Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+            <div class="ie-warning__inner">
+                <ul class="ie-warning__download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="img/browsers/chrome.png" alt="">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="img/browsers/firefox.png" alt="">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="img/browsers/opera.png" alt="">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="img/browsers/safari.png" alt="">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="img/browsers/ie.png" alt="">
+                            <div>IE (New)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+        <![endif]-->
+
+
+        <!-- Javascript -->
+
+        <!-- jQuery -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Waves button ripple effects -->
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+        <!-- NoUiSlider - Input Slider -->
+        <script src="vendors/bower_components/nouislider/distribute/nouislider.min.js"></script>
+
+        <!-- rateYo - Ratings -->
+        <script src="vendors/bower_components/rateYo/min/jquery.rateyo.min.js"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="js/app.min.js"></script>
+
+        <!-- Demo only -->
+        <script src="js/demo/maps/nearby-properties.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyD_nanUpVqytOmHHfuW4htZsiLH7YUzJ1A" async defer></script>
+        <script src="js/demo/demo.js"></script>
+  </body>
+    <script src="{{ url_for('static', filename='jquery.js') }}" type="text/javascript"></script>
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1>Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="ie-warning__inner">
+                    <ul class="ie-warning__download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>
+        <![endif]-->
+
+        <!-- Javascript -->
+
+        <!-- jQuery -->
+        <script src="{{ url_for('static', filename='home_files/jquery.min.js')}}"></script>
+
+        <!-- Bootstrap -->
+
+        <!-- Waves button ripple effects -->
+        <script src="{{ url_for('static', filename='home_files/waves.min.js')}}"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="{{ url_for('static', filename='home_files/select2.full.min.js')}}"></script>
+
+        <!-- Slick Carousel - Custom Alerts -->
+        <script src="{{ url_for('static', filename='home_files/slick.min.js')}}"></script>
+
+        <!-- NoUiSlider -->
+        <script src="{{ url_for('static', filename='home_files/nouislider.min.js')}}"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="{{ url_for('static', filename='home_files/app.min.js')}}"></script>
+
+        <!-- Demo only -->
+        <script src="{{ url_for('static', filename='home_files/demo.js')}}"></script>
+
+        <!-- jQuery -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/jquery/dist/jquery.min.js')}}"></script>
+
+        <!-- Bootstrap -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+        <!-- Waves button ripple effects -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/Waves/dist/waves.min.js')}}"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+
+        <!-- Slick Carousel - Custom Alerts -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/slick-carousel/slick/slick.min.js')}}"></script>
+
+        <!-- NoUiSlider -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/nouislider/distribute/nouislider.min.js')}}"></script>
+
+        <!-- Autosize - Textarea -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/autosize/dist/autosize.min.js')}}"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="{{ url_for('static', filename='js/app.min.js')}}"></script>
+
+        <!-- Demo only -->
+        <script src="js/demo/demo.js"></script>
+
+</html>

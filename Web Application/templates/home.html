@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://bootstrapsale.com/projects/roost/v1-1/index.html -->
+<html lang="en"><!--[if IE 9 ]><html lang="en" class="ie9"><![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Movio</title>
+
+<link rel="shortcut icon" href="https://raw.githubusercontent.com/shoekla/Movio/master/Movio%20Android%20App/app/src/main/res/drawable/icon.png" />
+        <!-- Vendors -->
+
+        <!-- Material design colors -->
+
+        <!-- CSS animations -->
+
+   
+       <link href="http://bootstrapsale.com/projects/roost/v1-1/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='animate.min.css')}}">
+
+        <!-- Select2 - Custom Selects -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/select2.min.css')}}">
+
+        <!-- Slick Carousel -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/slick.css')}}">
+
+
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/nouislider.min.css')}}">
+
+        <!-- Site -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/app_1.min.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/app_2.min.css')}}">
+
+        <!-- Page Loader JS -->
+      
+
+<body>
+
+    <div style="margin-top:100px">
+   <center> <h1>
+
+   Movio
+   <img src="https://raw.githubusercontent.com/shoekla/Movio/master/Movio%20Android%20App/app/src/main/res/drawable/icon.png" style="height: 50px;width: 50px"/></h1>
+  <h4 style="color:grey">"Your taste in Movies"</h4>
+
+
+   </center>
+     
+            <div class="header__search container">
+                <form action="/search/" method="POST">
+                    <div class="search">
+                        <div class="search__type dropdown">
+                            <a href="" data-toggle="dropdown">
+                                FIND
+                            </a>
+
+                          
+                        </div>
+
+                        <div class="search__body">
+                            <input type="text" class="search__input" placeholder="Search For A Movie..." data-rmd-action="advanced-search-open" name="name">
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+                            <div class="search__advanced">
+                                
+                              
+                                <div class="col-xs-12 m-t-10">
+                                    <input type="submit" name="Search" value="Search" class="btn btn-primary">
+                                    <button class="btn btn-link" data-rmd-action="advanced-search-close">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+          
+       
+           <div >
+
+    </div>
+<br/><br/>
+
+            <div class="header__recommended">
+      <div class="my-location">
+<div class="my-location__title"><h3><span style="color:black">Upcoming Movies</span></h3></div>
+<hr/>
+</div>
+        
+                <div class="listings-grid">
+                {% for movie in movies %}
+              
+                    <div class="listings-grid__item">
+                          <a href="javascript:{}" onclick="document.getElementById('{{movie[0]}}').submit(); return false;" style="width:100%" class="media">
+                            
+                            <form id="{{movie[0]}}" action="/upMovie/" method="POST">
+                              
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+                            <div class="listings-grid__body">
+                            <center><h5>{{movie[0]}}</h5>
+                            <small style="color:{{pData[movies.index(movie)][1]}}">Prediction:
+                                    {{pData[movies.index(movie)][0]}}
+                            </small>
+                                </center>
+                                
+                            </div>
+
+                            <ul class="listings-grid__attrs">
+                                <li>Metacritic: {{movie[4]}}</li>
+                                <li>Rated: {{movie[1]}}</li>
+                            </ul>
+                            <ul class="listings-grid__attrs">
+                                <li>{{movie[2]}} min, Genre: {{movie[3]}}</li>
+                                <li>Director: {{movie[5]}}</li>
+                            </ul>
+                            <ul class="listings-grid__attrs">
+                                <li>{{movie[6]}}</li>
+                            </ul>
+                            
+                                    <input type="hidden" name="name" value="{{movie[0]}}">
+                                    <input type="hidden" name="data" value="{{movie[1]}}">
+<input type="hidden" name="summary" value="{{movie[6]}}">
+                                    <input type="hidden" name="link" value="{{movie[7]}}">
+               
+                             </form>
+                        </a>
+
+                        
+                    </div>
+               
+                {% endfor %}
+                </div>
+
+                </div>
+
+                <button class="btn btn--action btn--circle" data-rmd-action="block-open" data-rmd-target="#advanced-search">
+            <img src="{{ url_for('static', filename='user.png')}}" style="height:25px;width:25px" />
+            </button>
+      
+      <aside id="advanced-search" class="rmd-sidebar">
+            <div class="card">
+                <div class="card__header">
+                    <h2>{{userName}}</h2>
+                    <hr/>
+
+                    
+                </div>
+
+                <div class="card__body m-t-20">
+                 <div class="form-group form-group--float">
+
+                        <label class="fg-float">User Options</label>
+                        <br/><br/><br/>
+                        <form action="/ratedMovies/" method="POST">
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+
+<input type="submit" name="Movies Rated" value="Movies Rated" class="btn btn-success">
+                        </form>
+                        <br/><br/>
+                        <form action="/accountSett/" method="POST">
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+
+<input type="submit" name="Acount Settings" value="Acount Settings" class="btn btn-primary">
+                        </form>
+                       
+                    </div><br/>
+                  
+                   </div>
+
+
+               
+
+               
+
+                <div class="card__footer">
+<hr/>
+ <a class="btn btn-warning" href="/">Logout</a>
+
+
+                    <a href="" class="btn btn-link" data-rmd-action="block-close" data-rmd-target="#advanced-search">Cancel</a>
+                
+                </div>
+                
+            </div>
+
+        </aside>
+
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1>Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+            <div class="ie-warning__inner">
+                <ul class="ie-warning__download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="img/browsers/chrome.png" alt="">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="img/browsers/firefox.png" alt="">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="img/browsers/opera.png" alt="">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="img/browsers/safari.png" alt="">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="img/browsers/ie.png" alt="">
+                            <div>IE (New)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+        <![endif]-->
+
+ </div>
+        <!-- Javascript -->
+
+        <!-- jQuery -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Waves button ripple effects -->
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+        <!-- NoUiSlider - Input Slider -->
+        <script src="vendors/bower_components/nouislider/distribute/nouislider.min.js"></script>
+
+        <!-- rateYo - Ratings -->
+        <script src="vendors/bower_components/rateYo/min/jquery.rateyo.min.js"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="js/app.min.js"></script>
+
+        <!-- Demo only -->
+        <script src="js/demo/maps/nearby-properties.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyD_nanUpVqytOmHHfuW4htZsiLH7YUzJ1A" async defer></script>
+        <script src="js/demo/demo.js"></script>
+    </body>
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1>Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="ie-warning__inner">
+                    <ul class="ie-warning__download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>
+        <![endif]-->
+
+        <!-- Javascript -->
+
+        <!-- jQuery -->
+        <script src="{{ url_for('static', filename='home_files/jquery.min.js')}}"></script>
+
+        <!-- Bootstrap -->
+
+        <!-- Waves button ripple effects -->
+        <script src="{{ url_for('static', filename='home_files/waves.min.js')}}"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="{{ url_for('static', filename='home_files/select2.full.min.js')}}"></script>
+
+        <!-- Slick Carousel - Custom Alerts -->
+        <script src="{{ url_for('static', filename='home_files/slick.min.js')}}"></script>
+
+        <!-- NoUiSlider -->
+        <script src="{{ url_for('static', filename='home_files/nouislider.min.js')}}"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="{{ url_for('static', filename='home_files/app.min.js')}}"></script>
+
+        <!-- Demo only -->
+        <script src="{{ url_for('static', filename='home_files/demo.js')}}"></script>
+
+</html>

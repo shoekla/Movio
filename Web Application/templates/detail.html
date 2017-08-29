@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://bootstrapsale.com/projects/roost/v1-1/index.html -->
+<html lang="en"><!--[if IE 9 ]><html lang="en" class="ie9"><![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     <head>   
+
+   
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Movio {{name}}</title>
+
+<link rel="shortcut icon" href="https://raw.githubusercontent.com/shoekla/Movio/master/Movio%20Android%20App/app/src/main/res/drawable/icon.png" />
+        <!-- Vendors -->
+
+        <!-- Material design colors -->
+
+        <!-- CSS animations -->
+
+   
+        <!-- NoUiSlider - Input Slider -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/nouislider.min.css')}}">
+
+        <!-- Site -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/app_1.min.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_files/app_2.min.css')}}">
+           <!-- Material design colors -->
+        <link href="{{ url_for('static', filename='vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet')}}">
+
+        <!-- CSS animations -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/bower_components/animate.css/animate.min.css')}}">
+
+        <!-- Select2 - Custom Selects -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/bower_components/select2/dist/css/select2.min.css')}}">
+
+        <!-- NoUiSlider - Input Slider -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/bower_components/nouislider/distribute/nouislider.min.css')}}">
+
+        <!-- Site -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/app_1.min.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/app_2.min.css')}}">
+
+        <!-- Page Loader JS -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+</head>
+<body>
+     <div class="action-header">
+            <div class="container">
+               <!-- data-rmd-action="block-open" data-rmd-target="#advanced-search" -->
+                <form action="/search/" method="POST">
+
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+        <input class="search__input hidden-xs" type="text" placeholder="Search For A Movie..." name="name">
+ <div class="search__advanced">
+                                
+                              
+                                <div class="col-xs-12 m-t-10">
+                                    <input type="submit" name="Search" value="Search" class="btn btn-primary">
+                                    <button class="btn btn-link" data-rmd-action="advanced-search-close">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+             
+
+             
+            </div>
+        </div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=778777158891878";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+        <section class="section">
+         <button class="btn btn--action btn--circle" data-rmd-action="block-open" data-rmd-target="#advanced-search">
+            <img src="{{ url_for('static', filename='user.png')}}" style="height:25px;width:25px" />
+            </button>
+            <div class="container">
+                <header class="section__title section__title-alt">
+                    <h1>{{name}}</h1>
+                    <small>{{data}}</small>
+
+                    <div class="actions actions--section">
+                        
+                        <a href="" data-rmd-action="print"><img src="{{ url_for('static', filename='printer.png')}}" style="width:25px;height:25px"/></a>
+                        <div class="dropdown actions__email">
+                         <a href="mailto:?subject=Movio Movie: {{name}}&body=Check out this cool Movie! 
+                            http://www.imdb.com{{link}}"><img src="{{ url_for('static', filename='email.png')}}" style="width:25px;height:25px"/></a>
+
+                            
+                        </div>
+                        <div class="dropdown">
+                            <div class="fb-share-button" data-href="http://www.imdb.com{{link}}" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fabirshukla.pythonanywhere.com%2F&amp;src=sdkpreparse">Share</a></div>
+<br/><br/>
+                     <a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet?text=http://www.imdb.com{{link}}"
+  >
+Tweet</a>
+<br/>
+
+                        </div>
+                    </div>
+                </header>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="detail-media">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active light-gallery" id="detail-media-images">
+                                       <iframe src="https://www.youtube.com/embed/{{trailer}}" width="750" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    </div>
+                                   
+                                </div>
+
+                               
+                            </div>
+
+                            <div class="detail-info">
+                                <div class="detail-info__header clearfix">
+                                
+                               
+                            {% if message == "p"%}
+                            <p style="color:black">Please Select Rating</p>
+                            {% endif%}
+
+                             {% if message == "e"%}
+                            <p style="color:red">Error Occured Please Try again later</p>
+                            {% endif%}
+
+                             {% if message == "r"%}
+                            <p style="color:black">Rating Submitted</p>
+                            <button class="btn btn-primary" id="show">Rate Movie</button>
+                             <div class="load">
+                             <form class="card__body" action="/rateMovie/" method="POST">
+
+                            <input type="hidden" name="ml" value="{{ml}}"/>
+
+                            <input type="hidden" name="name" value="{{name}}"/>
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+                            <input type="hidden" name="data" value="{{data}}"/>
+                            <input type="hidden" name="link" value="{{link}}"/>
+                            <input type="hidden" name="goog" value="{{goog}}"/>
+                            <input type="hidden" name="trailer" value="{{trailer}}"/>
+                            <input type="hidden" name="summary" value="{{summary}}"/>
+                            <input type="hidden" name="results" value="{{results}}"/>
+                            <input type="hidden" name="genre" value="{{genre}}"/>
+                            <input type="hidden" name="people" value="{{people}}"/>
+
+                            <input type="hidden" name="prediction" value="{{prediction}}"/>
+
+
+                                        <label>How did you like the Movie?</label>
+                                       
+                                        <select class="form-control" id="test" name="like">
+                                        <option value="1">Rate Movie</option>
+                                            <option value="Love" id="show">Love it</option>
+                                            <option value="Like" id="show">Like it</option>
+                                            <option value="Mind" id="show">Don't Mind it</option>
+                                            <option value="Hate" id="show">Hate it</option>
+                                           
+                                        </select>
+
+
+                            <br/>
+      
+                              <button class="btn btn-primary" id="show">Submit Rating</button>
+
+
+
+
+
+
+
+                
+                                    </form>
+                                    </div>
+                            {% endif%}
+
+                             {% if message == ""%}
+
+
+
+
+                            <div>
+                             <form class="card__body" action="/rateMovie/" method="POST">
+
+                            <input type="hidden" name="ml" value="{{ml}}"/>
+
+                            <input type="hidden" name="name" value="{{name}}"/>
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+                            <input type="hidden" name="data" value="{{data}}"/>
+                            <input type="hidden" name="link" value="{{link}}"/>
+                            <input type="hidden" name="goog" value="{{goog}}"/>
+                            <input type="hidden" name="trailer" value="{{trailer}}"/>
+                            <input type="hidden" name="summary" value="{{summary}}"/>
+                            <input type="hidden" name="results" value="{{results}}"/>
+                            <input type="hidden" name="genre" value="{{genre}}"/>
+                            <input type="hidden" name="people" value="{{people}}"/>
+
+                            <input type="hidden" name="prediction" value="{{prediction}}"/>
+
+
+                                        <label>How did you like the Movie?</label>
+                                       
+                                        <select class="form-control" id="test" name="like">
+                                        <option value="1">Rate Movie</option>
+                                            <option value="Love" id="show">Love it</option>
+                                            <option value="Like" id="show">Like it</option>
+                                            <option value="Mind" id="show">Don't Mind it</option>
+                                            <option value="Hate" id="show">Hate it</option>
+                                           
+                                        </select>
+
+
+                            <br/>
+      
+                              <button class="btn btn-primary" id="show">Rate Movie</button>
+
+
+
+
+
+
+
+                
+                                    </form>
+                                    </div>
+                                    {% endif%}
+
+                                <!--
+                                    <strong>Rate it:
+                                    <a class="btn btn-danger">Hate it</a>
+                                    <a class="btn btn-warning">Don't Mind it</a>
+                                    <a class="btn btn-primary">Like it</a>
+                                    <a class="btn btn-success">Love it</a>
+                                    </strong><br/>
+                                    -->
+                                    
+                                </div>
+
+                                <ul class="detail-info__list clearfix">
+                                    
+                                        <h4>{{summary}}</h4>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                      
+                      
+                    </div>
+
+                    <div id="inquire" class="col-md-4 rmd-sidebar-mobile">
+                        <form class="card hidden-print" action="#" method="POST">
+                        <input type="hidden" name="tripName" value="{{name}}">
+                            <div class="card__header">
+                                <h2>Information about {{name}}</h2><br/>
+                                
+                            <h4>Prediction: <span style="color:{{prediction[1]}}">{{prediction[0]}}</span></h4>
+                            </div><hr/>
+
+                            <div class="card__body">
+                                
+
+                                <div class="form-group form-group--float">
+                                    <h4>IMDB: {{ml[0]}}</h4>
+                                    
+                                    <h4>Metacritic: {{ml[1]}}</h4>
+                                    <h4>Genre: {{genre}}</h4>
+                                    <h4>Length: {{ml[4]}} minutes</h4>
+                                     <h4>{{ml[3]}} awards</h4>
+                                     <h4>People Involved: {{people}}</h4>
+                                </div>
+                               <hr/>
+                                
+
+                            </div>
+
+                            <div class="card__footer">
+        <a class="btn btn-primary" href="http://www.imdb.com{{link}}">Go to IMDB</a>
+    <a class="btn btn-success" href="{{goog}}">Go to Google</a>
+                            </div>
+                        </form>
+
+                      
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="container">
+                    <h2>Movies related to "{{name}}"</h2><hr/>
+             
+
+                <div class="row">
+
+
+                    {% for res in results %}
+                          <div class="col-sm-4 listings-list">
+                <div class="listings-grid__item">
+                            <a href="javascript:{}" onclick="document.getElementById('{{res[0]}}').submit(); return false;" style="width:100%" class="media">
+                            
+                            <form id="{{res[0]}}" action="/movie/" method="POST">
+                               
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+                                    <div class="listings-grid__body">
+                                        
+                                        <h4>{{res[0]}}</h4>
+                                    </div>
+                                    <ul class="listings-grid__attrs">
+                                        <li>{{res[1]}}</li>
+                                    </ul>
+                                    <input type="hidden" name="name" value="{{res[0]}}">
+                                    <input type="hidden" name="data" value="{{res[1]}}">
+
+                                    <input type="hidden" name="link" value="{{res[2]}}">
+
+                                </form>
+                            </a>
+
+                            
+                        </div>
+                        </div>
+
+                        {% if (results.index(res)+1) % 3 == 0 %}
+                            </div>   <div class="row">
+                        {% endif %}
+
+                      
+
+                     {% endfor %}
+
+                      
+                    
+
+                </div>
+            </div>
+
+        <!-- Listing Search -->
+ 
+      <aside id="advanced-search" class="rmd-sidebar">
+            <div class="card">
+                <div class="card__header">
+                    <h2>{{userName}}</h2>
+                    <hr/>
+
+                    
+                </div>
+
+                <div class="card__body m-t-20">
+                 <div class="form-group form-group--float">
+
+                        <label class="fg-float">User Options</label>
+                        <br/><br/><br/>
+                        <form action="/ratedMovies/" method="POST">
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+
+<input type="submit" name="Movies Rated" value="Movies Rated" class="btn btn-success">
+                        </form>
+                        <br/><br/>
+                        <form action="/accountSett/" method="POST">
+                            <input type="hidden" name="userName" value="{{userName}}"/>
+
+<input type="submit" name="Acount Settings" value="Acount Settings" class="btn btn-primary">
+                        </form>
+                       
+                    </div><br/>
+                  
+                   </div>
+
+
+               
+
+               
+
+                <div class="card__footer">
+<hr/>
+ <a class="btn btn-warning" href="/">Logout</a>
+
+
+                    <a href="" class="btn btn-link" data-rmd-action="block-close" data-rmd-target="#advanced-search">Cancel</a>
+                
+                </div>
+                
+            </div>
+
+        </aside>
+
+<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+   <!-- jQuery -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Waves button ripple effects -->
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+        <!-- NoUiSlider - Input Slider -->
+        <script src="vendors/bower_components/nouislider/distribute/nouislider.min.js"></script>
+
+        <!-- rateYo - Ratings -->
+        <script src="vendors/bower_components/rateYo/min/jquery.rateyo.min.js"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="js/app.min.js"></script>
+
+        <!-- Demo only -->
+        <script src="js/demo/maps/nearby-properties.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyD_nanUpVqytOmHHfuW4htZsiLH7YUzJ1A" async defer></script>
+        <script src="js/demo/demo.js"></script>
+    </body>
+    <script src="{{ url_for('static', filename='jquery.js') }}" type="text/javascript"></script>
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1>Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="ie-warning__inner">
+                    <ul class="ie-warning__download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>
+        <![endif]-->
+
+        <!-- Javascript -->
+
+        <!-- jQuery -->
+        <script src="{{ url_for('static', filename='home_files/jquery.min.js')}}"></script>
+
+        <!-- Bootstrap -->
+
+        <!-- Waves button ripple effects -->
+        <script src="{{ url_for('static', filename='home_files/waves.min.js')}}"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="{{ url_for('static', filename='home_files/select2.full.min.js')}}"></script>
+
+        <!-- Slick Carousel - Custom Alerts -->
+        <script src="{{ url_for('static', filename='home_files/slick.min.js')}}"></script>
+
+        <!-- NoUiSlider -->
+        <script src="{{ url_for('static', filename='home_files/nouislider.min.js')}}"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="{{ url_for('static', filename='home_files/app.min.js')}}"></script>
+
+        <!-- Demo only -->
+        <script src="{{ url_for('static', filename='home_files/demo.js')}}"></script>
+
+        <!-- jQuery -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/jquery/dist/jquery.min.js')}}"></script>
+
+        <!-- Bootstrap -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+        <!-- Waves button ripple effects -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/Waves/dist/waves.min.js')}}"></script>
+
+        <!-- Select 2 - Custom Selects -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+
+        <!-- Slick Carousel - Custom Alerts -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/slick-carousel/slick/slick.min.js')}}"></script>
+
+        <!-- NoUiSlider -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/nouislider/distribute/nouislider.min.js')}}"></script>
+
+        <!-- Autosize - Textarea -->
+        <script src="{{ url_for('static', filename='vendors/bower_components/autosize/dist/autosize.min.js')}}"></script>
+
+        <!-- IE9 Placeholder -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Site functions and actions -->
+        <script src="{{ url_for('static', filename='js/app.min.js')}}"></script>
+
+        <!-- Demo only -->
+        <script src="js/demo/demo.js"></script>
+
+</html>
