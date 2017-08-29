@@ -13,10 +13,7 @@ import pyrebase
 import os
 import predict
 config = {
-  "apiKey": "AIzaSyBWNvx1_eEJNzvesTfP6OdlwYluv7ar0Qs",
-  "authDomain": "movio-96dae.firebaseapp.com",
-  "databaseURL": "https://movio-96dae.firebaseio.com/",
-  "storageBucket": "movio-96dae.appspot.com"
+  """Firebase Login"""
 }
 
 
