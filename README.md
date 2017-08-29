@@ -2,7 +2,7 @@
 Movio is a python script that texts (via twilio api) you everyday whichever movies come out that day along with.
 Also, if it is Monday it texts you a list of all movies coming out that week.
 It uses imdb and youtube to get ratings, trailers and other information.
-It also uses machine learning (scikit-learn) to learn your taste in movies.
+It also uses machine learning (scikit-learn) to learn your taste in movies.<br/>
 Web Application: https://movioe.herokuapp.com/
 # Texting service
 Simply create a twilio account, set some variables to the keys you receive, and deploy this flask application to get the texting service ready
