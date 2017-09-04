@@ -10,6 +10,10 @@ Simply create a twilio account, set some variables to the keys you receive, and 
 Android app is voice driven (meaning you just give the app voice commands) and the app communicates to the flask application to learn which movies users like and which movies they do not. Finally, the app can predict which movies the user will like in the future (accuracy is a reflection on the quantity and quality of the data given previously)
 # Web Application
 Movio is also a web application which has the same functionality as the android application, buts works within flask to make the ml faster. It also adds different levels of liking a movie. It learns movies one by one (unlike the android application that learns movies in groups at a time), this makes the web app have a more fluent process in which the user feeds data to the ml algorithm.
+# Magic Mirror Module (Sort Of)
+Users can embed upcoming movie data, with predictions if he or she will like the movie by following these steps:
+- Step 1: Install MMM-iFrame. (<a href="https://github.com/alberttwong/MMM-iFrame">https://github.com/alberttwong/MMM-iFrame</a>)
+- Step 2: Add the url http://movioe.herokuapp.com/mirror/YOUR-USERNAME/YOUR-PASSWORD/
 # Machine Learning algorithm
 This application utilized the K nearest neighbors algorithm that allows simple addition of data and a relatively simple way of prediction.
 Below is an image I created to hopefully give you a good idea on how it works. I used this over a decision tree, because it was faster for the test cases I ran on it with the same accuracy and since decision trees are usually used just to visualize the algorithm in a simple way.
